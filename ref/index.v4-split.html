@@ -34,7 +34,7 @@
 .callout .lead{stroke:var(--amber);stroke-width:2;fill:none;stroke-dasharray:1;stroke-dashoffset:1}
 .callout .label{opacity:0}
 #cracks path{stroke-dasharray:1;stroke-dashoffset:1}
-.story-photo{position:absolute;right:1%;top:53%;height:88vh;width:auto;max-width:60%;object-fit:cover;z-index:2;opacity:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 18%),linear-gradient(to bottom,#000 0,#000 76%,transparent 95%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 18%),linear-gradient(to bottom,#000 0,#000 76%,transparent 95%);mask-composite:intersect;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.story-photo{position:absolute;right:1%;top:53%;height:88vh;width:auto;max-width:60%;object-fit:cover;z-index:2;opacity:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 34%),linear-gradient(to bottom,transparent 0,#000 14%,#000 84%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 34%),linear-gradient(to bottom,transparent 0,#000 14%,#000 84%,transparent 100%);mask-composite:intersect}
 .story .grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 .band .band-img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;object-position:center 45%;display:block}
 .scene svg image{image-rendering:auto}
@@ -54,18 +54,11 @@ html:not(.js) .hint,.rm .hint{display:none}
 
 @media (max-width:900px){
   .story{height:480vh}
-  .story h1{font-size:clamp(2rem,9.2vw,2.7rem)}
-  .story .ph3 p{font-size:1rem;margin-bottom:22px}
-  .story-copy .kicker{font-size:11px;margin-bottom:14px}
-  .hud{bottom:16px;gap:12px;font-size:10px;flex-wrap:wrap;max-width:calc(100% - 48px)}
-  html:not(.js) .story-stage,.rm .story-stage{display:flex;flex-direction:column;min-height:0;padding:16px 0 40px}
-  html:not(.js) .story-photo,.rm .story-photo{position:relative;order:-1;top:auto;right:auto;height:46vh;width:100%;max-width:none;object-fit:cover;object-position:62% 50%;margin-bottom:12px;-webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent);mask-image:linear-gradient(to bottom,#000 72%,transparent)}
-  html:not(.js) .hud,.rm .hud{position:static;margin:18px 24px 0}
-  html:not(.js) .story-copy,.rm .story-copy{padding-bottom:0}
   .story-stage{grid-template-columns:1fr;align-items:end}
   .story-board{right:-24%;top:4%;width:140%;transform:none;-webkit-mask-image:linear-gradient(to top,transparent 0,#000 30%,#000 90%,transparent 100%);mask-image:linear-gradient(to top,transparent 0,#000 30%,#000 90%,transparent 100%)}
   .story-copy{padding:0 24px 96px;max-width:none}
   .story h1{max-width:none}
+  .hud{left:24px;bottom:22px;gap:16px}
   .hint{display:none}
 }
 </style>
@@ -79,9 +72,7 @@ html:not(.js) .hint,.rm .hint{display:none}
 <nav class="nav" id="nav" aria-label="Primary">
   <div class="wrap">
     <a href="index.html" class="brand" aria-label="Gadget Data Recovery home"><b>GADGET</b><span>DATA RECOVERY</span></a>
-    <a href="portal.html" class="btn btn-primary nav-cta">Book</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span></button>
-    <div class="links" id="navLinks">
+    <div class="links">
       <a href="index.html" aria-current="page">Home</a>
       <a href="data-recovery.html">Data Recovery</a>
       <a href="board-repairs.html">Board Repairs</a>
@@ -112,44 +103,33 @@ html:not(.js) .hint,.rm .hint{display:none}
       <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="gMetal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5d6167"/><stop offset=".45" stop-color="#d9dce1"/><stop offset=".6" stop-color="#9ea2a8"/><stop offset="1" stop-color="#4a4e54"/></linearGradient>
-          <linearGradient id="gBoardDark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17191d"/><stop offset=".5" stop-color="#101215"/><stop offset="1" stop-color="#0b0c0e"/></linearGradient>
+          <linearGradient id="gBoardDark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1e23"/><stop offset="1" stop-color="#0f1114"/></linearGradient>
           <linearGradient id="gShield" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b9bec4"/><stop offset=".5" stop-color="#8d9298"/><stop offset="1" stop-color="#6f757b"/></linearGradient>
-          <linearGradient id="gSubHero" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b4d22"/><stop offset=".4" stop-color="#b0883f"/><stop offset=".65" stop-color="#d4b063"/><stop offset="1" stop-color="#8a6a32"/></linearGradient>
+          <linearGradient id="gSubHero" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a4a1c"/><stop offset=".4" stop-color="#d09348"/><stop offset=".65" stop-color="#efc97f"/><stop offset="1" stop-color="#a86f30"/></linearGradient>
           <linearGradient id="gDie2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a2e35"/><stop offset=".35" stop-color="#14161a"/><stop offset="1" stop-color="#08090b"/></linearGradient>
           <linearGradient id="gNand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#23262b"/><stop offset="1" stop-color="#0e1013"/></linearGradient>
           <linearGradient id="gGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#242b33"/><stop offset=".5" stop-color="#11151a"/><stop offset="1" stop-color="#0a0c0f"/></linearGradient>
           <linearGradient id="gGlare" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
           <radialGradient id="gBall" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#b9bdc3"/><stop offset="1" stop-color="#3f4348"/></radialGradient>
-          <pattern id="edgeBalls" width="8.5" height="8.5" patternUnits="userSpaceOnUse"><circle cx="4.25" cy="4.25" r="3.6" fill="#b08a3a"/><circle cx="4.25" cy="4.25" r="2.4" fill="url(#gBall)"/></pattern>
+          <pattern id="edgeBalls" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.5" fill="url(#gBall)"/></pattern>
           <pattern id="padsFine" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.9" fill="#c9a24a"/><circle cx="3" cy="3" r=".8" fill="#f0d68a"/></pattern>
           <pattern id="boardDots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r=".7" fill="#2a2e35"/></pattern>
           <pattern id="dieGridH" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0,0 H8 M0,0 V8" stroke="#2c3037" stroke-width=".5" fill="none"/></pattern>
           <filter id="blurHero" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter>
-          <!-- one logic board, reused for donor and replacement: iPhone-style sandwich board, notched top-right, perimeter BGA -->
-          <path id="pcbOutline" d="M0,22 Q0,0 22,0 H556 Q578,0 578,22 V104 H738 Q760,104 760,126 V398 Q760,420 738,420 H22 Q0,420 0,398 Z"/>
-          <clipPath id="pcbClip"><use href="#pcbOutline"/></clipPath>
+          <!-- one logic board, reused for donor and replacement -->
           <g id="pcbArt">
-            <use href="#pcbOutline" fill="url(#gBoardDark)" stroke="#2a2e34" stroke-width="2"/>
-            <rect x="0" y="0" width="760" height="420" fill="url(#boardDots)" opacity=".55" clip-path="url(#pcbClip)"/>
-            <use href="#pcbOutline" fill="none" stroke="url(#edgeBalls)" stroke-width="22" clip-path="url(#pcbClip)"/>
-            <use href="#pcbOutline" fill="none" stroke="#c9a24a" stroke-width="1" stroke-opacity=".55" transform="translate(12,12) scale(0.9684,0.9429)"/>
-            <!-- shield-can frames (lids removed on the bench) -->
-            <g fill="#121417" stroke="#aab0b6" stroke-width="2.4"><rect x="40" y="40" width="130" height="110" rx="3"/><rect x="40" y="296" width="150" height="94" rx="3"/><rect x="662" y="140" width="78" height="150" rx="3"/></g>
-            <g fill="none" stroke="#6d7379" stroke-width="1"><rect x="46" y="46" width="118" height="98" rx="2"/><rect x="46" y="302" width="138" height="82" rx="2"/><rect x="668" y="146" width="66" height="138" rx="2"/></g>
-            <!-- pad footprints under the two chips -->
+            <path d="M18,0 H742 Q760,0 760,18 V402 Q760,420 742,420 H18 Q0,420 0,402 V18 Q0,0 18,0 Z" fill="url(#gBoardDark)" stroke="#2e333a" stroke-width="2"/>
+            <rect x="16" y="16" width="728" height="388" fill="url(#boardDots)" opacity=".7"/>
+            <rect x="2" y="2" width="756" height="14" fill="url(#edgeBalls)"/><rect x="2" y="404" width="756" height="14" fill="url(#edgeBalls)"/><rect x="2" y="2" width="14" height="416" fill="url(#edgeBalls)"/><rect x="744" y="2" width="14" height="416" fill="url(#edgeBalls)"/>
+            <g fill="url(#gShield)" stroke="#5e6369" stroke-width="1.5"><rect x="40" y="40" width="130" height="110" rx="3"/><rect x="40" y="300" width="150" height="90" rx="3"/><rect x="600" y="40" width="120" height="90" rx="3"/></g>
+            <g fill="#7f858b" opacity=".9"><rect x="48" y="48" width="114" height="94" rx="2"/><rect x="48" y="308" width="134" height="74" rx="2"/><rect x="608" y="48" width="104" height="74" rx="2"/></g>
             <rect x="300" y="120" width="150" height="150" fill="url(#padsFine)"/>
             <rect x="520" y="150" width="120" height="150" fill="url(#padsFine)"/>
-            <!-- ICs: dark epoxy with a silver pin-1 dot and laser text -->
-            <g fill="#1a1d22" stroke="#07080a" stroke-width="1.2"><rect x="200" y="60" width="60" height="40" rx="2"/><rect x="280" y="50" width="40" height="40" rx="2"/><rect x="470" y="48" width="70" height="46" rx="2"/><rect x="200" y="300" width="50" height="50" rx="2"/><rect x="400" y="300" width="80" height="60" rx="2"/><rect x="520" y="320" width="60" height="40" rx="2"/><rect x="600" y="316" width="50" height="44" rx="2"/><rect x="230" y="180" width="40" height="30" rx="2"/><rect x="520" y="60" width="30" height="30" rx="2"/><rect x="200" y="230" width="70" height="30" rx="2"/><rect x="60" y="180" width="110" height="90" rx="2"/><rect x="600" y="230" width="44" height="60" rx="2"/></g>
-            <g fill="#2a2e34"><rect x="66" y="186" width="98" height="78" rx="1"/><rect x="406" y="306" width="68" height="48" rx="1"/></g>
-            <!-- silver-topped parts (RAM, modem, PMIC lids) -->
-            <g fill="url(#gShield)" stroke="#5a6066" stroke-width="1"><rect x="206" y="66" width="48" height="28" rx="1"/><rect x="476" y="54" width="58" height="34" rx="1"/><rect x="606" y="236" width="32" height="48" rx="1"/><rect x="236" y="186" width="28" height="18" rx="1"/></g>
-            <g fill="#e6e8eb" opacity=".5"><rect x="210" y="70" width="40" height="3"/><rect x="480" y="58" width="50" height="3"/><rect x="610" y="240" width="24" height="3"/></g>
-            <g fill="#8a8f96"><circle cx="205" cy="65" r="1.6"/><circle cx="285" cy="55" r="1.6"/><circle cx="475" cy="53" r="1.6"/><circle cx="205" cy="305" r="1.6"/><circle cx="405" cy="305" r="1.6"/><circle cx="65" cy="185" r="1.6"/><circle cx="605" cy="321" r="1.6"/></g>
-            <g font-family="IBM Plex Mono,monospace" font-size="7" fill="#9ba0a6" opacity=".8" letter-spacing=".5"><text x="206" y="84">338S00770</text><text x="476" y="76">TI 78CT</text><text x="410" y="334">SN2611A0</text><text x="70" y="230">339S00647</text><text x="604" y="342">QLC 4</text><text x="604" y="264">STB</text></g>
+            <g fill="#1b1e23" stroke="#08090b" stroke-width="1.2"><rect x="200" y="60" width="60" height="40" rx="2"/><rect x="280" y="50" width="40" height="40" rx="2"/><rect x="470" y="60" width="70" height="50" rx="2"/><rect x="200" y="300" width="50" height="50" rx="2"/><rect x="400" y="300" width="80" height="60" rx="2"/><rect x="520" y="320" width="60" height="40" rx="2"/><rect x="660" y="180" width="60" height="80" rx="2"/><rect x="650" y="300" width="70" height="50" rx="2"/><rect x="230" y="180" width="40" height="30" rx="2"/><rect x="560" y="60" width="30" height="30" rx="2"/><rect x="200" y="230" width="70" height="30" rx="2"/></g>
+            <g fill="#8a8f96"><circle cx="205" cy="65" r="1.6"/><circle cx="285" cy="55" r="1.6"/><circle cx="475" cy="65" r="1.6"/><circle cx="205" cy="305" r="1.6"/><circle cx="405" cy="305" r="1.6"/><circle cx="665" cy="185" r="1.6"/><circle cx="655" cy="305" r="1.6"/></g>
+            <g font-family="IBM Plex Mono,monospace" font-size="7" fill="#9ba0a6" opacity=".8" letter-spacing=".5"><text x="206" y="84">338S00770</text><text x="476" y="90">TI 78CT</text><text x="404" y="336">SN2611A0</text><text x="663" y="222">STB</text><text x="653" y="330">QLC 4</text></g>
             <g class="passives"></g>
-            <!-- screw holes, gold-plated -->
-            <g fill="#0c0e10" stroke="#c9a24a" stroke-width="2.5"><circle cx="32" cy="32" r="6"/><circle cx="546" cy="32" r="6"/><circle cx="32" cy="388" r="6"/><circle cx="728" cy="388" r="6"/><circle cx="728" cy="136" r="6"/></g>
+            <g fill="#0c0e10" stroke="#c9a24a" stroke-width="2.5"><circle cx="34" cy="34" r="6"/><circle cx="726" cy="34" r="6"/><circle cx="34" cy="386" r="6"/><circle cx="726" cy="386" r="6"/></g>
             <text x="330" y="398" font-family="IBM Plex Mono,monospace" font-size="8" fill="#d5d3ce" opacity=".7" letter-spacing="1">820-02179-A</text>
           </g>
         </defs>
@@ -164,7 +144,7 @@ html:not(.js) .hint,.rm .hint{display:none}
               <rect id="shCPU" x="300" y="120" width="150" height="150" rx="8" fill="#000" opacity=".55" filter="url(#blurHero)"/>
               <rect id="shNAND" x="520" y="150" width="120" height="150" rx="6" fill="#000" opacity=".5" filter="url(#blurHero)"/>
               <g class="callout" id="calloutCPU"><path class="lead" pathLength="1" d="M375,118 L375,56"/><g class="label"><rect x="336" y="26" width="78" height="26" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="347" y="44" font-family="IBM Plex Mono,monospace" font-size="12" fill="#e8a33d">A17 CPU</text></g></g>
-              <g class="callout" id="calloutNAND"><path class="lead" pathLength="1" d="M580,148 L580,90"/><g class="label"><rect x="546" y="60" width="70" height="26" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="557" y="78" font-family="IBM Plex Mono,monospace" font-size="12" fill="#e8a33d">NAND</text></g></g>
+              <g class="callout" id="calloutNAND"><path class="lead" pathLength="1" d="M580,148 L580,56"/><g class="label"><rect x="546" y="26" width="70" height="26" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="557" y="44" font-family="IBM Plex Mono,monospace" font-size="12" fill="#e8a33d">NAND</text></g></g>
             </g>
             </g>
             <!-- replacement board -->
@@ -188,7 +168,7 @@ html:not(.js) .hint,.rm .hint{display:none}
               <rect x="22" y="22" width="106" height="106" rx="2" fill="url(#gDie2)" stroke="#2a2d32" stroke-width="1"/>
               <rect x="22" y="22" width="106" height="106" fill="url(#dieGridH)" opacity=".6"/>
               <polygon points="22,22 128,22 22,128" fill="url(#gGlare)"/>
-              <g font-family="IBM Plex Mono,monospace" fill="#5a6068" letter-spacing="1.2" text-anchor="middle"><text x="75" y="66" font-size="9">APL1W07</text><text x="75" y="80" font-size="11" fill="#8a9098">A17 PRO</text><text x="75" y="94" font-size="7">339S00908</text><text x="75" y="106" font-size="7">TAIWAN 2337</text></g>
+              <g font-family="IBM Plex Mono,monospace" fill="#5a6068" letter-spacing="1.2" text-anchor="middle"><text x="75" y="70" font-size="9">APL1W07</text><text x="75" y="84" font-size="10" fill="#7a8088">A17 PRO</text><text x="75" y="98" font-size="7">TAIWAN 2337</text></g>
               <circle cx="30" cy="120" r="2.4" fill="#0f1113"/>
             </g>
             </g>
@@ -222,7 +202,7 @@ html:not(.js) .hint,.rm .hint{display:none}
         </g>
       </svg>
     </div>
-    <img class="story-photo" id="storyPhoto" src="assets/cpu-tweezers-cut.png" alt="iPhone CPU lifted off the logic board with tweezers, on our bench">
+    <img class="story-photo" id="storyPhoto" src="assets/cpu-tweezers.jpg" alt="iPhone CPU lifted off the logic board with tweezers, on our bench">
     <div class="grain" aria-hidden="true"></div>
     <div class="hud" aria-hidden="true"><span>Step<b id="hudStage">01 · Smashed</b></span><span>Grip<b id="hudGrip">Open</b></span><span>Lift<b id="hudLift">0.0 mm</b></span><span>Reflow<b id="hudTemp">25 °C</b></span></div>
     <div class="hint" aria-hidden="true"><i></i>Scroll</div>

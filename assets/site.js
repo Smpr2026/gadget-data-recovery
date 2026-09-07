@@ -72,10 +72,18 @@
   buildCircuit();
   var resizeT = 0; window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT = setTimeout(function(){ buildCircuit(); if (ST) ST.refresh(); }, 250); });
 
-  /* ---------- nav compaction ---------- */
+  /* ---------- nav compaction + mobile menu ---------- */
   var nav = document.getElementById('nav');
   function onScroll(){ if (nav) nav.classList.toggle('compact', window.scrollY > 40); }
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  var navToggle = document.getElementById('navToggle');
+  if (nav && navToggle) {
+    function setMenu(open){ nav.classList.toggle('open', open); navToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    navToggle.addEventListener('click', function(){ setMenu(!nav.classList.contains('open')); });
+    nav.querySelectorAll('.links a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setMenu(false); });
+    window.matchMedia('(min-width:901px)').addEventListener('change', function(m){ if (m.matches) setMenu(false); });
+  }
 
   if (!GDR.motion) {
     // no GSAP (CDN blocked) or reduced motion: never leave the boot overlay up, show the page as-is

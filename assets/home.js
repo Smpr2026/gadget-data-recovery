@@ -7,7 +7,7 @@
   /* hero board: a few hundred passives (MLCCs / resistors) scattered between the parts, like a real logic board */
   var pv = document.querySelector('#pcbArt .passives');
   if (pv) {
-    var blocks = [[40,40,130,110],[40,300,150,90],[600,40,120,90],[300,120,150,150],[520,150,120,150],[200,60,60,40],[280,50,40,40],[470,60,70,50],[200,300,50,50],[400,300,80,60],[520,320,60,40],[660,180,60,80],[650,300,70,50],[230,180,40,30],[560,60,30,30],[200,230,70,30]];
+    var blocks = [[578,0,182,104],[40,40,130,110],[40,296,150,94],[662,140,78,150],[300,120,150,150],[520,150,120,150],[200,60,60,40],[280,50,40,40],[470,48,70,46],[200,300,50,50],[400,300,80,60],[520,320,60,40],[600,316,50,44],[230,180,40,30],[520,60,30,30],[200,230,70,30],[60,180,110,90],[600,230,44,60],[320,388,120,14]];
     function free(x, y, w, h){ for (var i = 0; i < blocks.length; i++) { var bk = blocks[i]; if (x < bk[0]+bk[2]+4 && x+w > bk[0]-4 && y < bk[1]+bk[3]+4 && y+h > bk[1]-4) return false; } return true; }
     var frag = document.createDocumentFragment(), placed = 0, tries = 0;
     while (placed < 260 && tries < 4000) {

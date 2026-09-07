@@ -40,7 +40,9 @@ Copy and structure come from the Claude Design sources in `ref/design/GDR *.dc.h
 <nav class="nav" id="nav" aria-label="Primary">
   <div class="wrap">
     <a href="index.html" class="brand" aria-label="Gadget Data Recovery home"><b>GADGET</b><span>DATA RECOVERY</span></a>
-    <div class="links">
+    <a href="portal.html" class="btn btn-primary nav-cta">Book</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span></button>
+    <div class="links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="data-recovery.html" aria-current="page">Data Recovery</a>
       <a href="board-repairs.html">Board Repairs</a>
