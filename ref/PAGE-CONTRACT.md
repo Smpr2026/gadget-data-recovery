@@ -118,3 +118,10 @@ Rebuild the demo portal from `ref/design/GDR Portal.dc.html` in vanilla JS: logi
    `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --window-size=1440,2400 --virtual-time-budget=6000 --screenshot=/tmp/<page>-desktop.png "http://127.0.0.1:<port>/<page>.html?static"`
    and again with `--window-size=390,2600` for mobile. Look at both screenshots (Read the PNG) and fix what is wrong. Then render once more WITHOUT `?static` to confirm the boot wipe clears and the hero intro plays (the capture may land mid-animation; that is fine, it must just not be blank).
 3. No horizontal overflow at 390px, no console errors (run with `--enable-logging=stderr --v=0` and grep for `Uncaught`), every nav/footer link points at an existing file, every `assets/*` reference exists.
+
+## Verification notes (learned the hard way)
+
+- Headless Chrome on macOS clamps the window to about 500px wide, so `--window-size=390` renders a 500px layout cropped to 390. Check phone layouts with a 390px iframe inside a wider page, or in the real Browser pane.
+- Under `--virtual-time-budget` the GSAP/Lenis frame loop barely ticks, so a live (non-`?static`) capture can show the hero at opacity 0. Use `?static` for layout; confirm motion in a real browser tab that is visible (a hidden tab freezes the ticker too).
+- Headless Chrome often never exits after writing the screenshot on these pages. Wrap each capture in a timeout (`perl -e 'alarm 25; exec @ARGV' -- "…Chrome" …`) and scope any `pkill` to your own `--user-data-dir`.
+- The nav button contrast (`.links .btn` inheriting the link colour) is fixed in `assets/site.css`; pages no longer need a shim, but one is harmless.

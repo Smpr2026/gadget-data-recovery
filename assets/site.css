@@ -61,6 +61,7 @@ body > header,body > section,body > footer{position:relative;z-index:1}
 .links a:hover::after,.links a[aria-current]::after{transform:scaleX(1)}
 .links a[aria-current]{color:var(--amber)}
 .links .btn{padding:10px 20px;font-size:15px}
+.links .btn,.links .btn:hover,.links .btn[aria-current]{color:var(--amber-ink)}
 .links .btn::after{display:none}
 .nav-cta{display:none}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--ink);width:44px;height:44px;border-radius:6px;align-items:center;justify-content:center;cursor:pointer;padding:0;flex:none}
@@ -102,7 +103,7 @@ html.has-cursor a,html.has-cursor button{cursor:none}
 
 /* ---------- services ---------- */
 .services{padding:0 0 40px}
-.services h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-.025em;margin:0 0 56px;max-width:20ch}
+.services h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 56px;max-width:20ch}
 .services .intro{font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--amber);margin:0 0 16px;text-transform:uppercase}
 .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px 64px;align-items:center;margin-bottom:72px}
 .svc:last-child{margin-bottom:0}
@@ -120,10 +121,11 @@ html.has-cursor a,html.has-cursor button{cursor:none}
 /* ---------- band ---------- */
 .band{position:relative;min-height:520px;display:flex;align-items:center;margin:48px 0;overflow:hidden}
 .band svg{position:absolute;inset:0;width:100%;height:100%}
+.band .band-img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;object-position:center 45%;display:block}
 .band .veil{position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 0%,rgba(12,14,16,0) 22%,rgba(12,14,16,0) 78%,var(--bg) 100%),linear-gradient(to bottom,var(--bg) 0%,rgba(12,14,16,.35) 30%,rgba(12,14,16,.35) 70%,var(--bg) 100%)}
 .band .copy{position:relative;text-align:center;padding:80px 32px;width:100%}
 .band .copy .k{font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:var(--amber);margin:0 0 16px;text-transform:uppercase}
-.band h2{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;letter-spacing:-.025em;margin:0 0 14px;text-shadow:0 2px 24px rgba(12,14,16,.95)}
+.band h2{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 14px;text-shadow:0 2px 24px rgba(12,14,16,.95)}
 .band p{font-size:17px;color:#d5d3ce;max-width:34rem;margin:0 auto;text-shadow:0 1px 16px rgba(12,14,16,.95)}
 
 /* ---------- brands marquee ---------- */
@@ -137,7 +139,7 @@ html.has-cursor a,html.has-cursor button{cursor:none}
 
 /* ---------- cta + footer ---------- */
 .cta-final{padding:64px 32px 88px;text-align:center}
-.cta-final h2{font-size:clamp(1.75rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.025em;margin:0 0 16px}
+.cta-final h2{font-size:clamp(1.75rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 16px}
 .cta-final p{font-size:17px;color:#b8bcc2;margin:0 0 32px}
 .cta-final .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 footer{border-top:1px solid var(--line);background:var(--bg-2)}
@@ -205,7 +207,7 @@ footer nav a:hover{color:var(--ink)}
   .links a:first-child{border-top:0}
   .links a::after{display:none}
   .links a[aria-current]{color:var(--amber)}
-  .links .btn{margin-top:12px;justify-content:center;border-top:0;padding:14px 20px;font-size:16px}
+  .links .btn{margin-top:12px;justify-content:center;border-top:0;padding:14px 20px;font-size:16px;color:var(--amber-ink)}
   .svc.flip .scene{order:0}
   .svc.flip .text{order:1}
   .band{min-height:440px}

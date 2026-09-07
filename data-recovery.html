@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Recovery — Gadget Data Recovery</title>
+<meta name="description" content="Data recovery from dead, water-damaged and crushed iPhones, Samsungs, iPads and MacBooks in Sydney. Board-level recovery under the microscope — no recovery, no fee. Walk in Kingsgrove or mail in Australia-wide.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c0e10'/><circle cx='16' cy='16' r='7' fill='%23e8a33d'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* kit shim: keep the amber nav button legible (site.css .links a out-specifies .btn-primary) */
+.links .btn,.links .btn:hover,.links .btn[aria-current]{color:var(--amber-ink)}
+/* ---------- hero: copy left, the labelled board faded in on the right ---------- */
+.dr-hero{position:relative;padding:76px 0 40px;overflow:hidden}
+.dr-hero .lamp{position:absolute;right:-10%;top:-30%;width:58%;height:140%;background:radial-gradient(closest-side,rgba(232,163,61,.13),transparent 70%);pointer-events:none;z-index:0}
+.dr-hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px 56px;align-items:center}
+.dr-kicker{font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:var(--amber);text-transform:uppercase;margin:0 0 22px;display:flex;align-items:center;gap:12px}
+.dr-kicker i{width:8px;height:8px;border-radius:50%;background:var(--amber);display:block;box-shadow:0 0 0 0 rgba(232,163,61,.6)}
+.dr-hero h1{font-size:clamp(2.5rem,4.8vw,4.1rem);line-height:1.02;font-weight:700;letter-spacing:-.03em;margin:0 0 26px;max-width:12ch}
+.dr-lede{font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.6;color:var(--ink-2);max-width:34rem;margin:0 0 32px}
+.dr-cta{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 30px}
+.dr-guarantee{display:flex;align-items:center;gap:14px;font-size:15px;line-height:1.5;color:var(--ink-2);max-width:34rem}
+.dr-guarantee::before{content:"";width:22px;height:1px;background:var(--amber);flex:none}
+.dr-guarantee b{color:var(--ink);font-weight:600}
+.dr-hero-scene{width:100%;max-width:560px;justify-self:end}
+.dr-snap .lead,.dr-snap .label,.dr-snap .chip-glow{transition:none!important}
+
+/* ---------- shared section type ---------- */
+.dr-h2{font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.1;font-weight:700;letter-spacing:-.025em;margin:0}
+.dr-sub{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:34rem;margin:0}
+
+/* ---------- situations: sticky heading, six open rows ---------- */
+.dr-sit{padding:16px 0 104px}
+.dr-sit-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 72px;align-items:start}
+.dr-sit-head{position:sticky;top:112px}
+.dr-sit-head h2{max-width:13ch;margin-bottom:18px}
+.dr-sit-head p{margin-bottom:26px;max-width:28rem}
+.dr-sit-list{list-style:none;margin:0;padding:0}
+.dr-sit-list li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:0 20px;padding:30px 0;border-top:1px solid var(--line)}
+.dr-sit-list li:last-child{border-bottom:1px solid var(--line)}
+.dr-sit-list .mark{display:block;width:22px;height:1px;background:var(--amber);margin-top:15px}
+.dr-sit-list h3{font-size:clamp(1.3rem,2vw,1.55rem);font-weight:600;letter-spacing:-.015em;margin:0 0 10px}
+.dr-sit-list p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:52ch}
+
+/* ---------- why board-level: scope photo faded in, pairing diagram ---------- */
+.dr-why{padding:100px 0;background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dr-why-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 80px;align-items:center}
+.dr-why-photo{margin:0;position:relative;width:100%;max-width:460px}
+.dr-why-photo img{width:100%;height:auto;display:block;-webkit-mask-image:radial-gradient(72% 72% at 50% 50%,#000 40%,transparent 72%);mask-image:radial-gradient(72% 72% at 50% 50%,#000 40%,transparent 72%)}
+.dr-why-photo figcaption{position:absolute;left:8px;bottom:14px}
+.dr-why-copy h2{max-width:18ch;margin-bottom:22px}
+.dr-why-copy p{font-size:17px;line-height:1.65;color:var(--ink-2);max-width:36rem;margin:0 0 18px}
+.dr-pair{margin:40px 0 0;max-width:520px}
+.dr-pair-cap{font-size:15px;line-height:1.5;color:var(--ink-2);margin:8px 0 0;padding-left:2px}
+
+/* ---------- process: the real four-step sequence on a rail ---------- */
+.dr-process{padding:108px 0 64px}
+.dr-process-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:20px 72px;align-items:end;margin:0 0 60px}
+.dr-steps{list-style:none;margin:0;padding:0}
+.dr-steps li{position:relative;display:grid;grid-template-columns:40px 88px minmax(0,1fr) minmax(0,1.4fr);gap:0 24px;align-items:start;padding:0 0 64px}
+.dr-steps li:last-child{padding-bottom:0}
+.dr-steps li::before,.dr-steps li::after{content:"";position:absolute;left:19px;top:14px;bottom:-14px;width:1px}
+.dr-steps li::before{background:var(--line)}
+.dr-steps li::after{background:var(--amber);transform:scaleY(var(--p,1));transform-origin:50% 0}
+.dr-steps li:last-child::before,.dr-steps li:last-child::after{display:none}
+.dr-steps .dot{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--amber);background:var(--bg);justify-self:center;margin-top:8px;position:relative;z-index:1;transition:background .35s var(--ease-out),border-color .35s,box-shadow .35s}
+.dr-steps .n{font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--amber);padding-top:7px;transition:color .35s}
+.dr-steps h3{font-size:clamp(1.35rem,2vw,1.6rem);font-weight:600;letter-spacing:-.015em;margin:0}
+.dr-steps p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:44ch;padding-top:4px}
+.dr-steps.dr-motion li{--p:0}
+.dr-steps.dr-motion li:not(.on) .dot{border-color:#4a4e55}
+.dr-steps.dr-motion li:not(.on) .n{color:var(--mute)}
+.dr-steps li.on .dot{background:var(--amber);box-shadow:0 0 0 4px var(--amber-dim)}
+
+/* ---------- final cta note ---------- */
+.cta-final .dr-cta-note{font-size:15px;line-height:1.6;color:var(--ink-2);margin:28px auto 0;max-width:36rem}
+
+@media (prefers-reduced-motion:no-preference){.dr-kicker i{animation:ping 2.4s var(--ease-out) infinite}}
+@media (min-width:1100px){.dr-why-photo{margin-left:-56px}}
+@media (max-width:900px){
+  .dr-hero{padding:56px 0 24px}
+  .dr-hero .wrap{grid-template-columns:1fr;gap:36px}
+  .dr-hero h1{max-width:none}
+  .dr-hero-scene{max-width:none;width:auto;justify-self:stretch;margin:0 -24px}
+  .dr-hero-scene .cap{position:static;display:block;padding:8px 24px 0}
+  .dr-sit-grid,.dr-why-grid,.dr-process-head{grid-template-columns:1fr}
+  .dr-sit{padding-bottom:80px}
+  .dr-sit-head{position:static}
+  .dr-why{padding:72px 0}
+  .dr-why-photo{max-width:420px;margin:0 auto}
+  .dr-process{padding:80px 0 48px}
+  .dr-process-head{margin-bottom:44px}
+  .dr-steps li{grid-template-columns:28px minmax(0,1fr);gap:0 18px;padding-bottom:44px}
+  .dr-steps li::before,.dr-steps li::after{left:13px}
+  .dr-steps .n,.dr-steps h3,.dr-steps p{grid-column:2}
+  .dr-steps .n{padding-top:6px;margin-bottom:8px}
+  .dr-steps h3{margin-bottom:8px}
+  .dr-steps p{padding-top:0}
+}
+@media (max-width:560px){
+  .dr-sit-list li{grid-template-columns:36px minmax(0,1fr);gap:0 14px;padding:24px 0}
+  .dr-guarantee{align-items:flex-start}
+  .dr-guarantee::before{margin-top:11px}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<div id="boot" aria-hidden="true"><div class="t">GADGET DATA RECOVERY</div><div class="bar"><i></i></div></div>
+<div class="cur" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
+<svg class="circuit" id="circuit" aria-hidden="true"><g id="circuitTraces"></g><g id="circuitPulses"></g></svg>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Gadget Data Recovery home"><b>GADGET</b><span>DATA RECOVERY</span></a>
+    <a href="portal.html" class="btn btn-primary nav-cta">Book</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span></button>
+    <div class="links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="data-recovery.html" aria-current="page">Data Recovery</a>
+      <a href="board-repairs.html">Board Repairs</a>
+      <a href="trade.html">Trade &amp; B2B</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html" class="btn btn-primary">Book / Track</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="page-hero dr-hero">
+  <div class="lamp" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="dr-hero-copy">
+      <p class="dr-kicker" data-intro><i aria-hidden="true"></i>Data recovery · Sydney</p>
+      <h1 data-intro="words">We recover data other labs give up on</h1>
+      <p class="dr-lede" data-intro>Your photos live on a chip, not "in the phone". Even when the device is completely dead, that chip usually survives — and we repair the board around it just enough to get your data back.</p>
+      <div class="dr-cta" data-intro>
+        <a href="portal.html" class="btn btn-primary magnetic">Book a recovery</a>
+        <a href="tel:0289571077" class="btn btn-ghost">Call (02) 8957 1077</a>
+      </div>
+      <p class="dr-guarantee" data-intro><span><b>No recovery, no fee.</b> Free assessment under the microscope, and a quote before any work starts.</span></p>
+    </div>
+    <figure class="scene dr-hero-scene" id="sceneBoard" data-intro>
+      <svg viewBox="0 0 486 250" role="img" aria-label="Phone logic board from the bench with the UFS storage, CPU, RAM and EEPROM chips marked">
+        <defs>
+          <filter id="chipGlowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+          <radialGradient id="drFadeG" cx="50%" cy="50%" r="60%"><stop offset=".42" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+          <mask id="drFade" maskUnits="userSpaceOnUse" x="0" y="0" width="486" height="250"><rect width="486" height="250" fill="url(#drFadeG)"/></mask>
+        </defs>
+        <image href="assets/board-cut.png" width="486" height="250" preserveAspectRatio="xMidYMid slice" mask="url(#drFade)"/>
+        <ellipse class="chip-glow" style="--i:0" cx="140" cy="132" rx="54" ry="46" fill="#e8a33d" fill-opacity=".34" filter="url(#chipGlowF)"/>
+        <circle class="pulse" style="--i:0" cx="140" cy="132" r="4" fill="#e8a33d"/>
+        <circle class="pulse" style="--i:1" cx="250" cy="112" r="4" fill="#e8a33d"/>
+        <circle class="pulse" style="--i:2" cx="322" cy="86" r="4" fill="#e8a33d"/>
+        <circle class="pulse" style="--i:3" cx="322" cy="192" r="3" fill="#e8a33d"/>
+        <path class="lead" style="--i:0" pathLength="1" d="M140,150 L140,206"/>
+        <g class="label" style="--i:0"><rect x="14" y="206" width="192" height="22" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="22" y="221" font-family="IBM Plex Mono,monospace" font-size="10" fill="#e8a33d">UFS · your photos live here</text></g>
+        <path class="lead" style="--i:1" pathLength="1" d="M250,94 L250,42"/>
+        <g class="label" style="--i:1"><rect x="214" y="18" width="130" height="22" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="222" y="33" font-family="IBM Plex Mono,monospace" font-size="10" fill="#e8a33d">CPU · holds the key</text></g>
+        <path class="lead" style="--i:2" pathLength="1" d="M322,66 L352,42"/>
+        <g class="label" style="--i:2"><rect x="352" y="18" width="42" height="22" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="360" y="33" font-family="IBM Plex Mono,monospace" font-size="10" fill="#e8a33d">RAM</text></g>
+        <path class="lead" style="--i:3" pathLength="1" d="M330,192 L392,192 L392,212"/>
+        <g class="label" style="--i:3"><rect x="316" y="212" width="152" height="22" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="324" y="227" font-family="IBM Plex Mono,monospace" font-size="10" fill="#e8a33d">EEPROM · pin-code IC</text></g>
+      </svg>
+      <figcaption class="cap top">Bench · storage mapped</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- ================= GUARANTEES ================= -->
+<section class="stats" aria-label="Our guarantees">
+  <div class="wrap">
+    <div class="row">
+      <div class="stat"><div class="n amber">No recovery, no fee</div><div class="l">On every data recovery</div></div>
+      <div class="stat"><div class="n">Free</div><div class="l">Assessment, quote before work</div></div>
+      <div class="stat"><div class="n">In-house</div><div class="l">Nothing sent away, ever</div></div>
+      <div class="stat"><div class="n">Mail-in</div><div class="l">From anywhere in Australia</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SITUATIONS ================= -->
+<section class="dr-sit" aria-labelledby="sitTitle">
+  <div class="wrap">
+    <div class="dr-sit-grid">
+      <div class="dr-sit-head reveal-group">
+        <h2 class="dr-h2" id="sitTitle">We recover from devices that are…</h2>
+        <p class="dr-sub">If the storage chip survived, the job is usually possible. These are the devices that land on our bench every week, most of them after another shop said no.</p>
+        <a href="tel:0289571077" class="arrow-link">Not sure what's wrong? Call us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="dr-sit-list">
+        <li class="reveal"><i class="mark" aria-hidden="true"></i><div><h3>Completely dead</h3><p>No power, no charge light, no response — usually a board fault we can repair enough to boot once.</p></div></li>
+        <li class="reveal"><i class="mark" aria-hidden="true"></i><div><h3>Water or liquid damaged</h3><p>Dropped in the pool, ocean, washing machine. Don't charge it — bring it straight in.</p></div></li>
+        <li class="reveal"><i class="mark" aria-hidden="true"></i><div><h3>Bent, crushed or snapped</h3><p>Run over, sat on, snapped in half. If the storage chip survived, your data probably did too.</p></div></li>
+        <li class="reveal"><i class="mark" aria-hidden="true"></i><div><h3>Boot looping</h3><p>Stuck on the logo, restarting endlessly — often a single failed component away from booting.</p></div></li>
+        <li class="reveal"><i class="mark" aria-hidden="true"></i><div><h3>Not repairable elsewhere</h3><p>Quoted as "unrepairable" or "data unrecoverable" by another shop? Get a second opinion — free.</p></div></li>
+        <li class="reveal"><i class="mark" aria-hidden="true"></i><div><h3>Old or obscure</h3><p>Old iPhones, Androids, iPads, MacBooks, laptops, drones, dashcams — if it stores data, ask us. Proof of ownership required.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY BOARD-LEVEL ================= -->
+<section class="dr-why" aria-labelledby="whyTitle">
+  <div class="wrap">
+    <div class="dr-why-grid">
+      <figure class="dr-why-photo reveal">
+        <img src="assets/scope-boards.jpg" width="399" height="501" alt="Separated layers of an iPhone sandwich board under the lab microscope, the interposer lifted off the lower board">
+        <figcaption class="mono">Scope · board layer separation</figcaption>
+      </figure>
+      <div class="dr-why-copy reveal-group">
+        <h2 class="dr-h2" id="whyTitle">Modern phones encrypt data to the board itself</h2>
+        <p>On modern iPhones and Samsungs, the storage chip is encrypted and paired to the CPU. You can't just "read the chip" — software recovery tools are useless on a dead board.</p>
+        <p>The only way in is board repair: fix the fault, or transplant the paired CPU and storage together onto a donor board. That's microsoldering work — and it's what we do all day.</p>
+        <figure class="scene dr-pair">
+          <svg viewBox="0 0 520 168" role="img" aria-label="Diagram: the encryption key lives in the CPU, the data lives in the NAND storage chip, and the two are paired so they only work together">
+            <defs><filter id="pairGlowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="12"/></filter></defs>
+            <ellipse class="chip-glow" style="--i:1" cx="420" cy="82" rx="92" ry="52" fill="#e8a33d" fill-opacity=".16" filter="url(#pairGlowF)"/>
+            <g>
+              <rect x="16" y="34" width="168" height="96" rx="5" fill="#15181c" stroke="#3a3f46" stroke-width="1.2"/>
+              <rect x="34" y="50" width="132" height="64" rx="2" fill="#0c0e10" stroke="#2c3037" stroke-width="1"/>
+              <text x="100" y="79" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#e8e6e1" letter-spacing="1.5">A17 PRO</text>
+              <text x="100" y="97" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8f949b" letter-spacing="1">CPU · SECURE ENCLAVE</text>
+            </g>
+            <g>
+              <rect x="336" y="34" width="168" height="96" rx="4" fill="#111316" stroke="#3a3f46" stroke-width="1.2"/>
+              <text x="420" y="79" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#e8e6e1" letter-spacing="1.5">NAND · 256 GB</text>
+              <text x="420" y="97" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8f949b" letter-spacing="1">NVME · YOUR PHOTOS</text>
+            </g>
+            <path class="lead" style="--i:0" pathLength="1" d="M184,82 L336,82"/>
+            <circle class="pulse" style="--i:0" cx="260" cy="82" r="4" fill="#e8a33d"/>
+            <g class="label" style="--i:0"><rect x="190" y="46" width="140" height="24" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="260" y="62" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#e8a33d" letter-spacing="1">PAIRED · ENCRYPTED</text></g>
+            <g class="label" style="--i:1">
+              <text x="100" y="156" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#e8a33d" letter-spacing="1.4">THE KEY</text>
+              <text x="420" y="156" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#e8a33d" letter-spacing="1.4">THE DATA</text>
+            </g>
+          </svg>
+          <figcaption class="dr-pair-cap">One key, one chip. They move together, or the data stays locked.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="dr-process" aria-labelledby="howTitle">
+  <div class="wrap">
+    <div class="dr-process-head">
+      <h2 class="dr-h2 reveal" id="howTitle">How recovery works</h2>
+      <p class="dr-sub reveal">Four steps, all in-house at Kingsgrove. You know the price before we touch the board, and you pay nothing if the data doesn't come back.</p>
+    </div>
+    <ol class="draw-list dr-steps" id="drSteps">
+      <li><i class="dot" aria-hidden="true"></i><span class="n" aria-hidden="true">01</span><h3>Book it in</h3><p>Book online, walk in to Kingsgrove, or mail your device from anywhere in Australia.</p></li>
+      <li><i class="dot" aria-hidden="true"></i><span class="n" aria-hidden="true">02</span><h3>Free assessment</h3><p>We diagnose the board under the microscope and quote you before any work starts.</p></li>
+      <li><i class="dot" aria-hidden="true"></i><span class="n" aria-hidden="true">03</span><h3>Board-level recovery</h3><p>We repair the fault — or transplant the paired chips to a donor board — and boot the device.</p></li>
+      <li><i class="dot" aria-hidden="true"></i><span class="n" aria-hidden="true">04</span><h3>Your data, delivered</h3><p>Everything transferred to a new device or drive of your choice. No recovery, no fee.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-final wrap">
+  <h2>The sooner we see it, the better the odds</h2>
+  <p>Especially with liquid damage — corrosion spreads daily. Book it in now.</p>
+  <div class="row">
+    <a href="portal.html" class="btn btn-primary magnetic">Book a recovery</a>
+    <a href="tel:0289571077" class="btn btn-ghost">Call (02) 8957 1077</a>
+  </div>
+  <p class="dr-cta-note">No recovery, no fee · 290 Kingsgrove Road, Kingsgrove NSW 2208 · Open 6 days, Mon–Sat</p>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="id"><b>Gadget Data Recovery</b><span>DATA RECOVERY · MICROSOLDERING · BOARD-LEVEL REPAIR · SYDNEY</span></div>
+    <nav aria-label="Footer">
+      <a href="data-recovery.html">Data Recovery</a>
+      <a href="board-repairs.html">Board Repairs</a>
+      <a href="trade.html">Trade &amp; B2B</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  'use strict';
+  var GDR = window.GDR;
+  if (!GDR || !GDR.motion) return;
+  var ST = GDR.ST;
+
+  /* hero: the board callouts are held back until the intro has run, then draw in after the copy lands */
+  var board = document.getElementById('sceneBoard');
+  if (board) GDR.onIntro(function(){
+    board.classList.add('dr-snap');
+    board.classList.remove('in'); board.classList.add('pre');
+    void board.offsetWidth;
+    board.classList.remove('dr-snap');
+    setTimeout(function(){ board.classList.remove('pre'); board.classList.add('in'); }, 700);
+  });
+
+  /* process: each rail segment fills as its step passes the reading line, and the dot lights when the step starts */
+  var steps = document.getElementById('drSteps');
+  if (steps) {
+    steps.classList.add('dr-motion');
+    Array.prototype.forEach.call(steps.children, function(li){
+      ST.create({
+        trigger: li, start: 'top 62%', end: 'bottom 62%', scrub: true,
+        onUpdate: function(self){ li.style.setProperty('--p', self.progress.toFixed(3)); },
+        onEnter: function(){ li.classList.add('on'); },
+        onLeaveBack: function(){ li.classList.remove('on'); }
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

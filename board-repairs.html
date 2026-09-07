@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board Repairs &amp; Microsoldering Sydney — Gadget Data Recovery</title>
+<meta name="description" content="Microsoldering in Sydney: CPU &amp; NAND swaps, board layer separation, Face ID and rear camera repair, MacBook logic boards. iPhone, Samsung and all brands, repaired in-house at Kingsgrove.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c0e10'/><circle cx='16' cy='16' r='7' fill='%23e8a33d'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* kit shim: keep the amber nav button legible (site.css .links a out-specifies .btn-primary) */
+.links .btn,.links .btn:hover,.links .btn[aria-current]{color:var(--amber-ink)}
+/* ---------- hero: statement left, live scope right ---------- */
+.br-hero{padding:72px 0 40px}
+.br-hero .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 72px;align-items:center}
+.br-hero .kicker{font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:var(--amber);margin:0 0 22px;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.br-hero .kicker i{width:8px;height:8px;border-radius:50%;background:var(--amber);flex:none}
+@media (prefers-reduced-motion:no-preference){.br-hero .kicker i{animation:ping 2.4s var(--ease-out) infinite}}
+.br-hero h1{font-size:clamp(2.25rem,5vw,4.1rem);line-height:1.02;font-weight:700;letter-spacing:-.03em;margin:0 0 26px;max-width:14ch}
+.br-hero .lead{font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.6;color:var(--ink-2);max-width:34rem;margin:0 0 32px}
+.br-hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.br-scope{justify-self:end;width:min(100%,520px);isolation:isolate}
+.br-scope::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(closest-side,rgba(232,163,61,.12),transparent 95%);pointer-events:none}
+
+/* ---------- services: sticky heading, open rows with hairline rules ---------- */
+.br-services{padding:24px 0 80px}
+.br-services .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px 72px;align-items:start}
+.br-services-head{position:sticky;top:112px}
+.br-services h2{font-size:clamp(1.9rem,3.6vw,2.75rem);line-height:1.1;font-weight:700;letter-spacing:-.025em;margin:0 0 18px;max-width:14ch}
+.br-services-head p{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:28rem;margin:0 0 24px}
+.br-list{list-style:none;margin:0;padding:0}
+.br-row{display:grid;grid-template-columns:64px minmax(0,1fr) 200px;gap:6px 32px;padding:30px 0 34px;border-top:1px solid var(--line);align-items:start}
+.br-row:last-child{border-bottom:1px solid var(--line)}
+.br-n{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--amber);padding-top:.5em}
+.br-row h3{font-size:clamp(1.25rem,1.8vw,1.45rem);font-weight:600;letter-spacing:-.015em;margin:0 0 10px;max-width:24ch}
+.br-row p{font-size:16px;line-height:1.6;color:var(--ink-2);max-width:50ch;margin:0}
+.br-row .arrow-link{margin-top:16px}
+.br-tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-top:.7em;text-align:right;line-height:1.8}
+
+/* ---------- CPU & NAND feature: photo faded in, callouts drawn on ---------- */
+.br-feature{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:96px 0}
+.br-feature .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 80px;align-items:center}
+.br-feature .scene{width:min(100%,460px)}
+.br-feature h2{font-size:clamp(1.9rem,3.6vw,2.75rem);line-height:1.1;font-weight:700;letter-spacing:-.025em;margin:0 0 22px;max-width:18ch}
+.br-feature p{font-size:17px;line-height:1.65;color:var(--ink-2);max-width:56ch;margin:0 0 18px}
+.br-terms{list-style:none;margin:30px 0 0;padding:0;max-width:56ch}
+.br-terms li{display:flex;gap:18px;align-items:flex-start;padding:16px 0;border-top:1px solid #2a2e34;font-size:16px;line-height:1.5;color:var(--ink)}
+.br-terms li:last-child{border-bottom:1px solid #2a2e34}
+.br-terms li i{flex:none;width:20px;height:1px;background:var(--amber);margin-top:12px}
+
+/* ---------- from the bench: two faded photos, offset ---------- */
+.br-bench{padding:104px 0 48px}
+.br-bench .wrap{display:grid;grid-template-columns:minmax(0,3.5fr) minmax(0,4fr) minmax(0,4fr);gap:48px;align-items:start}
+.br-bench h2{font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.1;font-weight:700;letter-spacing:-.025em;margin:0 0 18px;max-width:14ch}
+.br-bench-copy p{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:26rem;margin:0 0 24px}
+.br-fig{margin:0}
+.br-fig img{display:block;width:100%;height:auto;-webkit-mask-image:radial-gradient(60% 60% at 50% 50%,#000 38%,transparent 98%);mask-image:radial-gradient(60% 60% at 50% 50%,#000 38%,transparent 98%)}
+.br-fig figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:4px;display:flex;align-items:center;gap:12px}
+.br-fig figcaption::before{content:"";width:24px;height:1px;background:var(--amber);flex:none}
+.br-fig-b{margin-top:120px}
+
+@media (max-width:1000px){
+  .br-hero .wrap,.br-feature .wrap,.br-services .wrap{grid-template-columns:minmax(0,1fr)}
+  .br-scope{justify-self:start;width:min(100%,400px)}
+  .br-services-head{position:static}
+  .br-services h2,.br-feature h2{max-width:none}
+  .br-bench .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .br-bench-copy{grid-column:1/-1}
+  .br-fig-b{margin-top:56px}
+  .br-feature{padding:72px 0}
+  .br-bench{padding-top:80px}
+}
+@media (max-width:640px){
+  .br-hero{padding-top:48px}
+  .br-row{grid-template-columns:40px minmax(0,1fr);gap:4px 20px;padding:26px 0 28px}
+  .br-tag{grid-column:2;text-align:left;padding-top:0;margin-top:2px}
+  .br-bench .wrap{grid-template-columns:minmax(0,1fr)}
+  .br-stats .row{gap:26px 40px}
+  .br-stats .stat .n{font-size:30px}
+  .br-fig{width:min(100%,380px)}
+  .br-fig-b{margin-top:0}
+}
+.br-fig img{-webkit-mask-image:radial-gradient(64% 66% at 50% 50%,#000 40%,transparent 74%);mask-image:radial-gradient(64% 66% at 50% 50%,#000 40%,transparent 74%)}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<div id="boot" aria-hidden="true"><div class="t">GADGET DATA RECOVERY</div><div class="bar"><i></i></div></div>
+<div class="cur" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
+<svg class="circuit" id="circuit" aria-hidden="true"><g id="circuitTraces"></g><g id="circuitPulses"></g></svg>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Gadget Data Recovery home"><b>GADGET</b><span>DATA RECOVERY</span></a>
+    <a href="portal.html" class="btn btn-primary nav-cta">Book</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span></button>
+    <div class="links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="data-recovery.html">Data Recovery</a>
+      <a href="board-repairs.html" aria-current="page">Board Repairs</a>
+      <a href="trade.html">Trade &amp; B2B</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html" class="btn btn-primary">Book / Track</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="page-hero br-hero">
+  <div class="wrap">
+    <div class="br-hero-copy">
+      <p class="kicker" data-intro><i aria-hidden="true"></i>Board-level repairs · Kingsgrove, Sydney</p>
+      <h1 data-intro="words">Microsoldering, done properly under the microscope</h1>
+      <p class="lead" data-intro>We don't swap parts and hope. We trace the fault to the component, repair it at the board level and test everything before it leaves the bench. iPhone, Samsung, iPad, MacBook and more.</p>
+      <div class="cta" data-intro>
+        <a href="portal.html" class="btn btn-primary magnetic">Book a repair</a>
+        <a href="tel:0289571077" class="btn btn-ghost">Call (02) 8957 1077</a>
+      </div>
+    </div>
+    <figure class="scene br-scope" id="sceneScope">
+      <svg viewBox="0 0 335 340" role="img" aria-label="Gold IC die and bond wires under the lab microscope, with the scope reticle over it">
+        <defs>
+          <radialGradient id="scopeVig" cx="50%" cy="50%" r="70%"><stop offset=".66" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+          <mask id="scopeMask"><rect width="335" height="340" fill="url(#scopeVig)"/></mask>
+          <radialGradient id="scopePage" cx=".5" cy=".5" r=".5"><stop offset=".72" stop-color="#0c0e10" stop-opacity="0"/><stop offset=".9" stop-color="#0c0e10" stop-opacity=".85"/><stop offset="1" stop-color="#0c0e10" stop-opacity="1"/></radialGradient>
+        </defs>
+        <image href="assets/scope-gold-ic.jpg" width="335" height="340" preserveAspectRatio="xMidYMid slice" mask="url(#scopeMask)"/>
+        <rect width="335" height="340" fill="url(#scopePage)"/>
+        <g stroke="#9fd8e6" fill="none" opacity=".55" stroke-width="1">
+          <circle cx="167" cy="170" r="122"/><circle cx="167" cy="170" r="72"/>
+          <path d="M167,26 V142 M167,198 V314 M23,170 H139 M195,170 H311"/>
+          <g class="reticle-ticks" id="reticleTicks"></g>
+        </g>
+        <g font-family="IBM Plex Mono,monospace" font-size="9" fill="#9fd8e6" letter-spacing="1.2">
+          <text x="10" y="18" id="scopeMag">×45</text><text x="10" y="32">0.3 MM / DIV</text>
+          <text x="325" y="18" text-anchor="end">BENCH 02</text>
+          <text x="325" y="330" text-anchor="end">GDR · SCOPE</text>
+        </g>
+      </svg>
+      <figcaption class="cap">Scope · ×45 · live view</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- ================= TERMS OF THE BENCH ================= -->
+<section class="stats br-stats" aria-label="How we work">
+  <div class="wrap">
+    <div class="row">
+      <div class="stat"><div class="n">3-month</div><div class="l">Warranty, parts &amp; labour</div></div>
+      <div class="stat"><div class="n amber">Quoted first</div><div class="l">Firm price, honest odds</div></div>
+      <div class="stat"><div class="n">In-house</div><div class="l">Under our own microscope</div></div>
+      <div class="stat"><div class="n">All brands</div><div class="l">iPhone · Samsung · MacBook</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="br-services" id="services" aria-labelledby="svcTitle">
+  <div class="wrap">
+    <div class="br-services-head reveal-group">
+      <h2 id="svcTitle">What we fix at the board level</h2>
+      <p>Component-level work on the boards other shops replace, or send away. Every job below is done under our own microscope in Kingsgrove, and nothing leaves the building.</p>
+      <a href="data-recovery.html" class="arrow-link">Need the data off a dead phone? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <ul class="br-list" role="list">
+      <li class="br-row reveal" id="microsoldering">
+        <span class="br-n" aria-hidden="true">01</span>
+        <div class="br-body">
+          <h3>Microsoldering</h3>
+          <p>Charging ICs, audio ICs, backlight circuits, touch faults, shorts and liquid damage, diagnosed and repaired at the component level.</p>
+        </div>
+        <span class="br-tag">iPhone · Samsung · iPad</span>
+      </li>
+      <li class="br-row reveal" id="layer-swaps">
+        <span class="br-n" aria-hidden="true">02</span>
+        <div class="br-body">
+          <h3>Board layer separation &amp; swaps</h3>
+          <p>Modern iPhone sandwich boards split and re-married to donor layers. One of the few Sydney labs doing this in-house.</p>
+        </div>
+        <span class="br-tag">iPhone sandwich boards</span>
+      </li>
+      <li class="br-row reveal" id="face-id">
+        <span class="br-n" aria-hidden="true">03</span>
+        <div class="br-body">
+          <h3>Face ID repairs</h3>
+          <p>Dot projector and flood illuminator faults repaired at component level, restoring your original Face ID rather than replacing the module.</p>
+        </div>
+        <span class="br-tag">iPhone · iPad Pro</span>
+      </li>
+      <li class="br-row reveal" id="rear-camera">
+        <span class="br-n" aria-hidden="true">04</span>
+        <div class="br-body">
+          <h3>Rear camera repairs</h3>
+          <p>Shaking, blurry or black rear cameras fixed while keeping your original camera and its factory calibration.</p>
+        </div>
+        <span class="br-tag">iPhone · Samsung</span>
+      </li>
+      <li class="br-row reveal" id="logic-boards">
+        <span class="br-n" aria-hidden="true">05</span>
+        <div class="br-body">
+          <h3>Laptop &amp; MacBook logic boards</h3>
+          <p>No power, liquid damage, charging faults and dead GPUs on MacBooks and Windows laptops. Repaired, not replaced.</p>
+        </div>
+        <span class="br-tag">MacBook · Windows</span>
+      </li>
+      <li class="br-row reveal" id="something-else">
+        <span class="br-n" aria-hidden="true">06</span>
+        <div class="br-body">
+          <h3>Something else?</h3>
+          <p>Consoles, drones, tablets: if it has a circuit board, ask.</p>
+          <a href="tel:0289571077" class="arrow-link">Call (02) 8957 1077 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <span class="br-tag">Anything with a board</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CPU & NAND SWAPS ================= -->
+<section class="br-feature" id="cpu-swaps" aria-labelledby="cpuTitle">
+  <div class="wrap">
+    <figure class="scene" id="sceneLift">
+      <svg viewBox="0 0 399 501" role="img" aria-label="A-series CPU lifted off an iPhone logic board on tweezers, the dead board below it">
+        <defs>
+          <linearGradient id="liftFadeX" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000"/><stop offset=".12" stop-color="#fff"/><stop offset=".8" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+          <linearGradient id="liftFadeY" x1="0" y1="0" x2="0" y2="1"><stop offset=".82" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="1"/></linearGradient>
+          <mask id="liftMask"><rect width="399" height="501" fill="url(#liftFadeX)"/><rect width="399" height="501" fill="url(#liftFadeY)"/></mask>
+          <filter id="liftGlowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+        </defs>
+        <image href="assets/cpu-tweezers-cut.png" width="399" height="501" preserveAspectRatio="xMidYMid slice" mask="url(#liftMask)"/>
+        <ellipse class="chip-glow" style="--i:0" cx="308" cy="240" rx="72" ry="104" fill="#e8a33d" fill-opacity=".16" filter="url(#liftGlowF)"/>
+        <circle class="pulse" style="--i:0" cx="308" cy="236" r="4" fill="#e8a33d"/>
+        <circle class="pulse" style="--i:1" cx="198" cy="362" r="4" fill="#e8a33d"/>
+        <path class="lead" style="--i:0" pathLength="1" d="M308,140 L308,88"/>
+        <g class="label" style="--i:0"><rect x="222" y="62" width="172" height="22" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="230" y="77" font-family="IBM Plex Mono,monospace" font-size="10" fill="#e8a33d">CPU · lifted, ball by ball</text></g>
+        <path class="lead" style="--i:1" pathLength="1" d="M198,362 L140,420"/>
+        <g class="label" style="--i:1"><rect x="18" y="420" width="172" height="22" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="26" y="435" font-family="IBM Plex Mono,monospace" font-size="10" fill="#e8a33d">Dead board · CPU footprint</text></g>
+      </svg>
+      <figcaption class="cap top">Bench photo · specialist service</figcaption>
+    </figure>
+    <div class="br-feature-copy reveal-group">
+      <h2 id="cpuTitle">CPU &amp; NAND swaps: the last-resort repair</h2>
+      <p>A CPU swap means lifting the processor and storage from a dead board and transplanting them onto a donor, under the microscope, ball by ball. It's the repair that saves a device and its data when nothing else can.</p>
+      <p>Because it takes many hours of careful bench work and carries real risk on badly damaged boards, it's quoted as a premium service: we assess the board first, give you a firm price and honest odds, and you decide before we start.</p>
+      <ul class="br-terms">
+        <li><i aria-hidden="true"></i><span>Assessed and quoted before any work starts</span></li>
+        <li><i aria-hidden="true"></i><span>Allow extra turnaround. This is hours of microscope work, not a same-day job</span></li>
+        <li><i aria-hidden="true"></i><span>Priced for the time and skill involved, with no surprises after the quote</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FROM THE BENCH ================= -->
+<section class="br-bench" aria-labelledby="benchTitle">
+  <div class="wrap">
+    <div class="br-bench-copy reveal-group">
+      <h2 id="benchTitle">From our bench, not a stock library</h2>
+      <p>Every photo on this page is our own work. Reballed chips, split sandwich boards, transplanted CPUs: the jobs other shops send away land on this bench in Kingsgrove.</p>
+      <a href="trade.html" class="arrow-link">Repair shops: send us your board work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <figure class="scene br-fig br-fig-a">
+      <img src="assets/chip-reball.jpg" width="399" height="400" loading="lazy" alt="Reballed BGA chip held in tweezers, a fresh solder ball on every pad">
+      <figcaption>BGA reball · ready for transplant</figcaption>
+    </figure>
+    <figure class="scene br-fig br-fig-b">
+      <img src="assets/scope-boards.jpg" width="399" height="501" loading="lazy" alt="Split layers of an iPhone sandwich board under the microscope, the interposer frame lifted away">
+      <figcaption>Layer separation · under the scope</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-final wrap">
+  <h2>Told it can't be fixed? Bring it in.</h2>
+  <p>Walk in six days a week at 290 Kingsgrove Road, Kingsgrove, or mail it in from anywhere in Australia. We assess first, quote firm, and you decide before we start.</p>
+  <div class="row">
+    <a href="portal.html" class="btn btn-primary magnetic">Book a repair</a>
+    <a href="tel:0289571077" class="btn btn-ghost">Call (02) 8957 1077</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="id"><b>Gadget Data Recovery</b><span>DATA RECOVERY · MICROSOLDERING · BOARD-LEVEL REPAIR · SYDNEY</span></div>
+    <nav aria-label="Footer">
+      <a href="data-recovery.html">Data Recovery</a>
+      <a href="board-repairs.html">Board Repairs</a>
+      <a href="trade.html">Trade &amp; B2B</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+/* Board repairs: the hero scope comes into focus after the boot and the magnification readout climbs to ×45.
+   Everything else on the page runs on the shared kit (data-intro, .scene callouts, .reveal, .stats, .cta-final). */
+(function(){
+  'use strict';
+  var GDR = window.GDR; if (!GDR || !GDR.motion) return;
+  var G = GDR.gsap, EXPO = GDR.EXPO;
+  var scope = document.querySelector('#sceneScope svg'), mag = document.getElementById('scopeMag');
+  if (!scope) return;
+  G.set(scope, { opacity: 0, scale: 0.92, filter: 'blur(9px)', transformOrigin: '50% 50%' });
+  GDR.onIntro(function(){
+    G.to(scope, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.4, ease: EXPO, delay: 0.15, clearProps: 'filter' });
+    if (mag) {
+      var o = { v: 8 };
+      G.to(o, { v: 45, duration: 1.5, ease: 'power3.out', delay: 0.3, onUpdate: function(){ mag.textContent = '×' + Math.round(o.v); } });
+    }
+  });
+})();
+</script>
+</body>
+</html>
