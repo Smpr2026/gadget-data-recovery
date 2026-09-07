@@ -12,8 +12,9 @@ for js in ['site','home']:
 for n in ['board-labeled','scope-gold-ic','chip-reball','cpu-tweezers','scope-boards']:
     b=base64.b64encode(open(os.path.join(root,f'assets/{n}.jpg'),'rb').read()).decode()
     s=s.replace(f'assets/{n}.jpg',f'data:image/jpeg;base64,{b}')
-png=base64.b64encode(open(os.path.join(root,'assets/cpu-tweezers-cut.png'),'rb').read()).decode()
-s=s.replace('assets/cpu-tweezers-cut.png',f'data:image/png;base64,{png}')
+for n in ['cpu-tweezers-cut','board-cut']:
+    png=base64.b64encode(open(os.path.join(root,f'assets/{n}.png'),'rb').read()).decode()
+    s=s.replace(f'assets/{n}.png',f'data:image/png;base64,{png}')
 open(os.path.join(root,'gadget-data-recovery-standalone.html'),'w',encoding='utf-8').write(s)
 head=re.search(r'<head>(.*?)</head>',s,re.S).group(1); body=re.search(r'<body>(.*?)</body>',s,re.S).group(1)
 head=re.sub(r'<meta charset="utf-8">\s*','',head); head=re.sub(r'<meta name="viewport"[^>]*>\s*','',head)

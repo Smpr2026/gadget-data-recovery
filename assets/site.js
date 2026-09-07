@@ -31,7 +31,7 @@
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.style.height = H + 'px';
     var gT = document.getElementById('circuitTraces'), gP = document.getElementById('circuitPulses');
     gT.innerHTML = ''; gP.innerHTML = ''; circuit.pulses = [];
-    var perSide = Math.max(10, Math.round(H / 46)); var paths = [];
+    var perSide = Math.max(8, Math.round(H / (window.innerWidth < 900 ? 70 : 46))); var paths = [];
     [-1, 1].forEach(function(side){
       var inner = W * 0.46;
       for (var i = 0; i < perSide; i++) {
@@ -59,7 +59,7 @@
       }
     });
     if (RM) return;
-    var count = Math.min(18, Math.floor(paths.length * 0.32));
+    var count = Math.min(window.innerWidth < 900 ? 8 : 18, Math.floor(paths.length * 0.32));
     for (var c = 0; c < count; c++) {
       var d2 = paths[Math.floor(rnd() * paths.length)];
       var halo = el('path', { d: d2, 'class': 'halo' }), pp = el('path', { d: d2, 'class': 'pulse' });
@@ -106,7 +106,7 @@
     G.ticker.lagSmoothing(0);
     document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click', function(e){ var t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -70 }); } }); });
   }
-  var bar = document.querySelector('.progress');
+  var bar = document.querySelector('.progress'), lastCharge = 0;
   G.ticker.add(function(time, dt){
     var y = window.scrollY; var v = lenis ? lenis.velocity : (y - lastY) / Math.max(dt, 1) * 16; lastY = y;
     velocity += (v - velocity) * 0.15;
@@ -115,7 +115,7 @@
       var pr = m > 0 ? y / m : 0;
       circuit.svg.style.transform = 'translate3d(0,' + (-(circuit.H - innerHeight) * pr).toFixed(1) + 'px,0)';
       var charge = Math.min(1, Math.abs(velocity) / 28);
-      circuit.svg.style.setProperty('--charge', charge.toFixed(3));
+      if (Math.abs(charge - lastCharge) > 0.04 || (charge === 0 && lastCharge !== 0)) { lastCharge = charge; circuit.svg.style.setProperty('--charge', charge.toFixed(2)); }
       var boost = 1 + Math.min(6, Math.abs(velocity) / 6);
       var sdt = dt / 1000;
       circuit.pulses.forEach(function(p){
@@ -256,3 +256,4 @@
   }
   window.addEventListener('load', function(){ ST.refresh(); });
 })();
+if ('serviceWorker' in navigator && location.protocol === 'https:') { window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); }); }

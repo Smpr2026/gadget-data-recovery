@@ -14,6 +14,7 @@
 .story{position:relative;height:560vh}
 .story-stage{position:sticky;top:0;height:100vh;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:1fr 1fr;align-items:center}
 .story-board{position:absolute;right:-6%;top:53%;width:72%;aspect-ratio:1400/900;z-index:2;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 24%),linear-gradient(to top,transparent 0,#000 16%,#000 90%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 24%),linear-gradient(to top,transparent 0,#000 16%,#000 90%,transparent 100%);mask-composite:intersect}
+.story-board{will-change:transform}
 .story-board svg{width:100%;height:100%;display:block;overflow:visible}
 .story-copy{position:relative;z-index:3;padding:0 32px;max-width:calc(var(--wrap)/2 + 32px);margin-left:auto;width:100%}
 .story-copy .kicker{font-family:var(--mono);font-size:13px;letter-spacing:.16em;color:var(--amber);margin:0 0 22px;display:flex;align-items:center;gap:12px}
@@ -27,15 +28,15 @@
 .hud b{color:var(--amber);font-weight:500;font-variant-numeric:tabular-nums;margin-left:8px}
 .hint{position:absolute;right:40px;bottom:28px;z-index:3;display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--mute)}
 .hint i{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--amber));display:block;transform-origin:100% 50%}
-#beams{position:absolute;inset:0;width:100%;height:100%;z-index:1;filter:blur(7px);opacity:.85;-webkit-mask-image:linear-gradient(to top,transparent 0%,#000 40%);mask-image:linear-gradient(to top,transparent 0%,#000 40%);pointer-events:none}
+#beams{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.8;-webkit-mask-image:linear-gradient(to top,transparent 0%,#000 40%);mask-image:linear-gradient(to top,transparent 0%,#000 40%);pointer-events:none}
 .story .lamp{position:absolute;right:-10%;top:-30%;width:70%;height:120%;background:radial-gradient(closest-side,rgba(232,163,61,.16),transparent 70%);z-index:1;pointer-events:none}
 .story .scan{position:absolute;inset:0;z-index:2;pointer-events:none;background-image:linear-gradient(rgba(0,0,0,0) 50%,rgba(0,0,0,.35) 50%);background-size:100% 4px;opacity:.16;mix-blend-mode:multiply}
 #fpTraces path{stroke:var(--amber);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
 .callout .lead{stroke:var(--amber);stroke-width:2;fill:none;stroke-dasharray:1;stroke-dashoffset:1}
 .callout .label{opacity:0}
 #cracks path{stroke-dasharray:1;stroke-dashoffset:1}
-.story-photo{position:absolute;right:1%;top:53%;height:88vh;width:auto;max-width:60%;object-fit:cover;z-index:2;opacity:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 18%),linear-gradient(to bottom,#000 0,#000 76%,transparent 95%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 18%),linear-gradient(to bottom,#000 0,#000 76%,transparent 95%);mask-composite:intersect;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
-.story .grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.story-photo{position:absolute;right:1%;top:53%;height:88vh;width:auto;max-width:60%;object-fit:cover;z-index:2;opacity:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 18%),linear-gradient(to bottom,#000 0,#000 76%,transparent 95%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 18%),linear-gradient(to bottom,#000 0,#000 76%,transparent 95%);mask-composite:intersect}
+.story .grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 .band .band-img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;object-position:center 45%;display:block}
 .scene svg image{image-rendering:auto}
 @media (min-width:901px){html:not(.js) .story-photo,.rm .story-photo{opacity:1;transform:translateY(-50%)}}
@@ -124,7 +125,7 @@ html:not(.js) .hint,.rm .hint{display:none}
           <pattern id="padsFine" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.9" fill="#c9a24a"/><circle cx="3" cy="3" r=".8" fill="#f0d68a"/></pattern>
           <pattern id="boardDots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r=".7" fill="#2a2e35"/></pattern>
           <pattern id="dieGridH" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0,0 H8 M0,0 V8" stroke="#2c3037" stroke-width=".5" fill="none"/></pattern>
-          <filter id="blurHero" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter>
+          <radialGradient id="gShadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".6"/><stop offset=".6" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient><radialGradient id="gScorch" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient><radialGradient id="gBurn" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3a2a12" stop-opacity=".5"/><stop offset="1" stop-color="#3a2a12" stop-opacity="0"/></radialGradient>
           <!-- one logic board, reused for donor and replacement: iPhone-style sandwich board, notched top-right, perimeter BGA -->
           <path id="pcbOutline" d="M0,22 Q0,0 22,0 H556 Q578,0 578,22 V104 H738 Q760,104 760,126 V398 Q760,420 738,420 H22 Q0,420 0,398 Z"/>
           <clipPath id="pcbClip"><use href="#pcbOutline"/></clipPath>
@@ -159,10 +160,10 @@ html:not(.js) .hint,.rm .hint{display:none}
             <g transform="translate(380,260)"><g id="donorBoard" opacity=".45">
               <use href="#pcbArt"/>
               <path d="M0,330 L38,296 L66,334 L104,286 L120,300" fill="none" stroke="#5b6066" stroke-width="2"/>
-              <ellipse cx="120" cy="350" rx="80" ry="42" fill="#000" opacity=".55" filter="url(#blurHero)"/>
-              <ellipse cx="700" cy="80" rx="60" ry="36" fill="#3a2a12" opacity=".45" filter="url(#blurHero)"/>
-              <rect id="shCPU" x="300" y="120" width="150" height="150" rx="8" fill="#000" opacity=".55" filter="url(#blurHero)"/>
-              <rect id="shNAND" x="520" y="150" width="120" height="150" rx="6" fill="#000" opacity=".5" filter="url(#blurHero)"/>
+              <ellipse cx="120" cy="350" rx="110" ry="60" fill="url(#gScorch)"/>
+              <ellipse cx="700" cy="80" rx="80" ry="50" fill="url(#gBurn)"/>
+              <ellipse id="shCPU" cx="375" cy="195" rx="120" ry="115" fill="url(#gShadow)"/>
+              <ellipse id="shNAND" cx="580" cy="225" rx="100" ry="115" fill="url(#gShadow)"/>
               <g class="callout" id="calloutCPU"><path class="lead" pathLength="1" d="M375,118 L375,56"/><g class="label"><rect x="336" y="26" width="78" height="26" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="347" y="44" font-family="IBM Plex Mono,monospace" font-size="12" fill="#e8a33d">A17 CPU</text></g></g>
               <g class="callout" id="calloutNAND"><path class="lead" pathLength="1" d="M580,148 L580,90"/><g class="label"><rect x="546" y="60" width="70" height="26" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="557" y="78" font-family="IBM Plex Mono,monospace" font-size="12" fill="#e8a33d">NAND</text></g></g>
             </g>
@@ -259,7 +260,9 @@ html:not(.js) .hint,.rm .hint{display:none}
       <figure class="scene" id="sceneBoard">
         <svg viewBox="0 0 486 250" role="img" aria-label="Phone logic board from the bench with the UFS storage, CPU, RAM and EEPROM chips marked">
           <defs><filter id="chipGlowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter></defs>
-          <image href="assets/board-labeled.jpg" width="486" height="250" preserveAspectRatio="xMidYMid slice"/>
+          <defs><radialGradient id="mBoard" cx=".5" cy=".5" r=".62"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient><mask id="maskBoard"><rect width="486" height="250" fill="url(#mBoard)"/></mask><radialGradient id="vigBoard" cx=".5" cy=".5" r=".6"><stop offset=".5" stop-color="#0c0e10" stop-opacity="0"/><stop offset="1" stop-color="#0c0e10" stop-opacity="1"/></radialGradient></defs>
+          <image href="assets/board-cut.png" width="486" height="250" preserveAspectRatio="xMidYMid slice" mask="url(#maskBoard)"/>
+          <rect width="486" height="250" fill="url(#vigBoard)"/>
           <ellipse class="chip-glow" style="--i:0" cx="140" cy="132" rx="54" ry="46" fill="#e8a33d" fill-opacity=".34" filter="url(#chipGlowF)"/>
           <circle class="pulse" style="--i:0" cx="140" cy="132" r="4" fill="#e8a33d"/>
           <circle class="pulse" style="--i:1" cx="250" cy="112" r="4" fill="#e8a33d"/>
@@ -282,7 +285,9 @@ html:not(.js) .hint,.rm .hint{display:none}
     <div class="svc flip" id="board-repairs">
       <figure class="scene" id="sceneScope">
         <svg viewBox="0 0 335 340" role="img" aria-label="Gold IC die and bond wires under the lab microscope">
-          <image href="assets/scope-gold-ic.jpg" width="335" height="340" preserveAspectRatio="xMidYMid slice"/>
+          <defs><radialGradient id="mScope" cx=".5" cy=".5" r=".5"><stop offset=".78" stop-color="#fff"/><stop offset=".97" stop-color="#000"/></radialGradient><mask id="maskScope"><rect width="335" height="340" fill="url(#mScope)"/></mask><radialGradient id="vigScope" cx=".5" cy=".5" r=".5"><stop offset=".72" stop-color="#0c0e10" stop-opacity="0"/><stop offset=".9" stop-color="#0c0e10" stop-opacity=".85"/><stop offset="1" stop-color="#0c0e10" stop-opacity="1"/></radialGradient></defs>
+          <image href="assets/scope-gold-ic.jpg" width="335" height="340" preserveAspectRatio="xMidYMid slice" mask="url(#maskScope)"/>
+          <rect width="335" height="340" fill="url(#vigScope)"/>
           <g stroke="#9fd8e6" fill="none" opacity=".55" stroke-width="1">
             <circle cx="167" cy="170" r="122"/><circle cx="167" cy="170" r="72"/>
             <path d="M167,26 V142 M167,198 V314 M23,170 H139 M195,170 H311"/>
@@ -315,7 +320,9 @@ html:not(.js) .hint,.rm .hint{display:none}
       <figure class="scene" id="sceneReball">
         <svg viewBox="0 0 399 400" role="img" aria-label="Reballed chip held in tweezers at the bench">
           <defs><filter id="reballGlowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="12"/></filter></defs>
-          <image href="assets/chip-reball.jpg" width="399" height="400" preserveAspectRatio="xMidYMid slice"/>
+          <defs><radialGradient id="mReball" cx=".5" cy=".52" r=".5"><stop offset=".3" stop-color="#fff"/><stop offset=".86" stop-color="#000"/></radialGradient><radialGradient id="vigReball" cx=".5" cy=".52" r=".5"><stop offset=".32" stop-color="#0c0e10" stop-opacity="0"/><stop offset=".78" stop-color="#0c0e10" stop-opacity=".75"/><stop offset="1" stop-color="#0c0e10" stop-opacity="1"/></radialGradient><mask id="maskReball"><rect width="399" height="400" fill="url(#mReball)"/></mask></defs>
+          <image href="assets/chip-reball.jpg" width="399" height="400" preserveAspectRatio="xMidYMid slice" mask="url(#maskReball)"/>
+          <rect width="399" height="400" fill="url(#vigReball)"/>
           <ellipse class="chip-glow" style="--i:0" cx="205" cy="225" rx="90" ry="80" fill="#e8a33d" fill-opacity=".16" filter="url(#reballGlowF)"/>
           <path class="lead" style="--i:0" pathLength="1" d="M205,225 L300,300 L330,300"/>
           <g class="label" style="--i:0"><rect x="330" y="289" width="62" height="22" rx="3" fill="#0c0e10" fill-opacity=".92"/><text x="338" y="304" font-family="IBM Plex Mono,monospace" font-size="10" fill="#e8a33d">0.35 mm</text></g>

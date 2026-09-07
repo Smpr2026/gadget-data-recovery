@@ -67,7 +67,7 @@
   story
     .to('#phone', { scale: 1.22, opacity: 0, transformOrigin: '50% 50%', duration: 0.12, ease: 'power1.in' }, 0)
     .to('#donorBoard', { opacity: 1, duration: 0.1 }, 0.03)
-    .to('#boardZoom', { scale: 1.06, transformOrigin: '55% 50%', duration: 0.25 }, 0)
+    .to('.story-board', { scale: 1.06, transformOrigin: '55% 50%', duration: 0.25 }, 0)
     .to('.hint', { opacity: 0, duration: 0.05 }, 0.02)
     .to(['#calloutCPU .lead', '#calloutNAND .lead'], { strokeDashoffset: 0, duration: 0.08, stagger: 0.03 }, 0.13)
     .to(['#calloutCPU .label', '#calloutNAND .label'], { opacity: 1, duration: 0.05, stagger: 0.03 }, 0.19)
@@ -106,10 +106,12 @@
     if (!canvas || !host) return; var ctx = canvas.getContext('2d'); if (!ctx) return;
     var density = 14, speed = 0.55, aberration = 3, opacity = 42, width = 0, height = 0, time = 0, visible = true;
     function noise(x, t){ return (Math.sin(x*0.01 + t) + Math.sin(x*0.03 + t*2)*0.5 + Math.sin(x*0.1 + t*4)*0.25) / 1.75; }
-    function resize(){ width = Math.max(1, Math.floor(host.offsetWidth/2)); height = Math.max(1, Math.floor(host.offsetHeight/2)); canvas.width = width; canvas.height = height; }
+    function resize(){ width = Math.max(1, Math.floor(host.offsetWidth/4)); height = Math.max(1, Math.floor(host.offsetHeight/4)); canvas.width = width; canvas.height = height; }
+    var frameToggle = false;
     function drawBeam(x, t, color, widthMod){ var n = noise(x, t*0.5), bh = height*(0.6 + n*0.4), bw = (width/density)*widthMod; var gr = ctx.createLinearGradient(x, height, x, height - bh); gr.addColorStop(0, color); gr.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = gr; ctx.beginPath(); ctx.moveTo(x - bw/2, height); ctx.lineTo(x + bw/2, height); ctx.lineTo(x + bw, height - bh); ctx.lineTo(x - bw, height - bh); ctx.fill(); }
     function draw(){
       if (!visible) return;
+      frameToggle = !frameToggle; if (frameToggle) return; // 30fps is plenty for an ambient layer
       ctx.clearRect(0,0,width,height); ctx.globalCompositeOperation = 'screen'; time += 0.01*speed; var bw = width/density;
       for (var i = 0; i <= density; i++) { var x = i*bw;
         drawBeam(x - aberration, time + i*0.1, 'rgba(232,163,61,' + ((opacity/100)*(0.5 + 0.5*Math.cos(i*0.5 + time))*0.5) + ')', 1.5);
