@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Phone Data Recovery Sydney | Dead &amp; Water-Damaged Devices | Gadget Data Recovery</title>
+<meta name="description" content="Data recovery from dead iPhones, Samsungs, iPads and MacBooks in Sydney. Board-level recovery — no fix, no fee. Walk in Kingsgrove or mail-in Australia-wide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html, body { margin: 0; padding: 0; background: #0c0e10; }
+body { font-family: 'Space Grotesk', sans-serif; color: #e8e6e1; -webkit-font-smoothing: antialiased; }
+a { color: #e8a33d; text-decoration: none; }
+a:hover { color: #f2bc6a; }
+* { box-sizing: border-box; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#0c0e10">
+
+<sc-if value="{{ showTopBar }}" hint-placeholder-val="{{ true }}">
+<div style="background:#e8a33d;color:#131007;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;padding:8px 24px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;text-align:center">
+<span>NO FIX, NO FEE DATA RECOVERY</span>
+<span>MAIL-IN AUSTRALIA-WIDE</span>
+<span>(02) 8957 1077</span>
+</div>
+</sc-if>
+
+<nav style="position:sticky;top:0;z-index:50;background:rgba(12,14,16,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 32px;border-bottom:1px solid #23262b;flex-wrap:wrap">
+<a href="Gadget Data Recovery.dc.html" style="display:flex;align-items:baseline;gap:10px;color:#e8e6e1">
+<span style="font-weight:700;font-size:21px;letter-spacing:-0.5px">GADGET</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e8a33d;letter-spacing:1px">DATA RECOVERY</span>
+</a>
+<div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
+<a href="Gadget Data Recovery.dc.html" style="font-size:15px;color:#b8bcc2">Home</a>
+<a href="GDR Data Recovery.dc.html" style="font-size:15px;color:#e8a33d">Data Recovery</a>
+<a href="GDR Board Repairs.dc.html" style="font-size:15px;color:#b8bcc2">Board Repairs</a>
+<a href="GDR Trade B2B.dc.html" style="font-size:15px;color:#b8bcc2">Trade &amp; B2B</a>
+<a href="GDR Contact.dc.html" style="font-size:15px;color:#b8bcc2">Contact</a>
+<a href="GDR Portal.dc.html" style="background:#e8a33d;color:#131007;font-weight:600;font-size:15px;padding:10px 20px;border-radius:6px" style-hover="background:#f2bc6a">Book / Track</a>
+</div>
+</nav>
+
+<!-- hero with faded image -->
+<header style="max-width:1240px;margin:0 auto;padding:72px 32px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px;align-items:center">
+<div>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#e8a33d;letter-spacing:2px;margin:0 0 20px">DATA RECOVERY — SYDNEY</p>
+<h1 style="font-size:clamp(38px,5vw,60px);line-height:1.05;font-weight:700;letter-spacing:-1.5px;margin:0 0 24px">We recover data other labs give up on</h1>
+<p style="font-size:18px;line-height:1.6;color:#b8bcc2;margin:0 0 32px">Your photos live on a chip, not "in the phone". Even when the device is completely dead, that chip usually survives — and we repair the board around it just enough to get your data back. No recovery, no fee.</p>
+<div style="display:flex;gap:14px;flex-wrap:wrap">
+<a href="GDR Portal.dc.html" style="background:#e8a33d;color:#131007;font-weight:600;font-size:16px;padding:14px 28px;border-radius:6px" style-hover="background:#f2bc6a">Book a recovery</a>
+<a href="tel:0289571077" style="border:1px solid #3a3e45;color:#e8e6e1;font-weight:500;font-size:16px;padding:14px 28px;border-radius:6px" style-hover="border-color:#e8a33d;color:#e8a33d">Call (02) 8957 1077</a>
+</div>
+</div>
+<div style="position:relative">
+<sc-if value="{{ fadeHeroImage }}" hint-placeholder-val="{{ true }}">
+<img src="assets/board-labeled.png" alt="Phone board with UFS storage, CPU, RAM and EEPROM chips labelled" style="width:100%;display:block;-webkit-mask-image:radial-gradient(80% 75% at 50% 48%, black 45%, transparent 78%);mask-image:radial-gradient(80% 75% at 50% 48%, black 45%, transparent 78%)">
+</sc-if>
+<sc-if value="{{ frameHeroImage }}" hint-placeholder-val="{{ false }}">
+<img src="assets/board-labeled.png" alt="Phone board with UFS storage, CPU, RAM and EEPROM chips labelled" style="width:100%;display:block;border-radius:12px;border:1px solid #23262b">
+</sc-if>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a8f96;text-align:center;margin:8px 0 0">YOUR DATA LIVES HERE — THE STORAGE CHIP AND ITS PAIRED CPU</p>
+</div>
+</header>
+
+<!-- situations -->
+<section style="max-width:1240px;margin:0 auto;padding:48px 32px 80px">
+<h2 style="font-size:clamp(28px,3.5vw,40px);font-weight:700;letter-spacing:-1px;margin:0 0 40px">We recover from devices that are…</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+<div style="background:#111316;border:1px solid #23262b;border-radius:10px;padding:24px" style-hover="border-color:#e8a33d">
+<h3 style="font-size:18px;font-weight:600;margin:0 0 8px">Completely dead</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">No power, no charge light, no response — usually a board fault we can repair enough to boot once.</p>
+</div>
+<div style="background:#111316;border:1px solid #23262b;border-radius:10px;padding:24px" style-hover="border-color:#e8a33d">
+<h3 style="font-size:18px;font-weight:600;margin:0 0 8px">Water or liquid damaged</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">Dropped in the pool, ocean, washing machine. Don't charge it — bring it straight in.</p>
+</div>
+<div style="background:#111316;border:1px solid #23262b;border-radius:10px;padding:24px" style-hover="border-color:#e8a33d">
+<h3 style="font-size:18px;font-weight:600;margin:0 0 8px">Bent, crushed or snapped</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">Run over, sat on, snapped in half. If the storage chip survived, your data probably did too.</p>
+</div>
+<div style="background:#111316;border:1px solid #23262b;border-radius:10px;padding:24px" style-hover="border-color:#e8a33d">
+<h3 style="font-size:18px;font-weight:600;margin:0 0 8px">Boot looping</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">Stuck on the logo, restarting endlessly — often a single failed component away from booting.</p>
+</div>
+<div style="background:#111316;border:1px solid #23262b;border-radius:10px;padding:24px" style-hover="border-color:#e8a33d">
+<h3 style="font-size:18px;font-weight:600;margin:0 0 8px">Not repairable elsewhere</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">Quoted as "unrepairable" or "data unrecoverable" by another shop? Get a second opinion — free.</p>
+</div>
+<div style="background:#111316;border:1px solid #23262b;border-radius:10px;padding:24px" style-hover="border-color:#e8a33d">
+<h3 style="font-size:18px;font-weight:600;margin:0 0 8px">Old or obscure</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">Old iPhones, Androids, iPads, MacBooks, laptops, drones, dashcams — if it stores data, ask us. Proof of ownership required.</p>
+</div>
+</div>
+</section>
+
+<!-- why chip-off -->
+<section style="border-top:1px solid #23262b;border-bottom:1px solid #23262b;background:#0f1114">
+<div style="max-width:1240px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;align-items:center">
+<div style="position:relative;order:1">
+<img src="assets/scope-boards.png" alt="Separated board layers under the microscope" style="width:100%;display:block;-webkit-mask-image:radial-gradient(70% 70% at 50% 50%, black 40%, transparent 72%);mask-image:radial-gradient(70% 70% at 50% 50%, black 40%, transparent 72%)">
+</div>
+<div style="order:2">
+<p style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#e8a33d;letter-spacing:2px;margin:0 0 16px">WHY BOARD-LEVEL MATTERS</p>
+<h2 style="font-size:clamp(28px,3.5vw,40px);font-weight:700;letter-spacing:-1px;margin:0 0 20px">Modern phones encrypt data to the board itself</h2>
+<p style="font-size:16px;line-height:1.65;color:#b8bcc2;margin:0 0 16px">On modern iPhones and Samsungs, the storage chip is encrypted and paired to the CPU. You can't just "read the chip" — software recovery tools are useless on a dead board.</p>
+<p style="font-size:16px;line-height:1.65;color:#b8bcc2;margin:0">The only way in is board repair: fix the fault, or transplant the paired CPU and storage together onto a donor board. That's microsoldering work — and it's what we do all day.</p>
+</div>
+</div>
+</section>
+
+<!-- process -->
+<section style="max-width:1240px;margin:0 auto;padding:80px 32px">
+<h2 style="font-size:clamp(28px,3.5vw,40px);font-weight:700;letter-spacing:-1px;margin:0 0 44px">How recovery
+works</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#e8a33d;margin-bottom:12px">STEP 1</div>
+<h3 style="font-size:19px;font-weight:600;margin:0 0 8px">Book it in</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">Book online, walk in to Kingsgrove, or mail your device from anywhere in Australia.</p>
+</div>
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#e8a33d;margin-bottom:12px">STEP 2</div>
+<h3 style="font-size:19px;font-weight:600;margin:0 0 8px">Free assessment</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">We diagnose the board under the microscope and quote you before any work starts.</p>
+</div>
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#e8a33d;margin-bottom:12px">STEP 3</div>
+<h3 style="font-size:19px;font-weight:600;margin:0 0 8px">Board-level recovery</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">We repair the fault — or transplant the paired chips to a donor board — and boot the device.</p>
+</div>
+<div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#e8a33d;margin-bottom:12px">STEP 4</div>
+<h3 style="font-size:19px;font-weight:600;margin:0 0 8px">Your data, delivered</h3>
+<p style="font-size:15px;line-height:1.6;color:#b8bcc2;margin:0">Everything transferred to a new device or drive of your choice. No recovery, no fee.</p>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="max-width:1240px;margin:0 auto;padding:0 32px 80px;text-align:center">
+<div style="background:#15181c;border:1px solid #23262b;border-radius:14px;padding:56px 32px">
+<h2 style="font-size:clamp(26px,3vw,36px);font-weight:700;letter-spacing:-1px;margin:0 0 14px">The sooner we see it, the better the odds</h2>
+<p style="font-size:16px;color:#b8bcc2;margin:0 0 28px">Especially with liquid damage — corrosion spreads daily. Book it in now.</p>
+<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+<a href="GDR Portal.dc.html" style="background:#e8a33d;color:#131007;font-weight:600;font-size:16px;padding:14px 28px;border-radius:6px" style-hover="background:#f2bc6a">Book a recovery</a>
+<a href="tel:0289571077" style="border:1px solid #3a3e45;color:#e8e6e1;font-weight:500;font-size:16px;padding:14px 28px;border-radius:6px" style-hover="border-color:#e8a33d;color:#e8a33d">Call (02) 8957 1077</a>
+</div>
+</div>
+</section>
+
+<footer style="border-top:1px solid #23262b;background:#0f1114">
+<div style="max-width:1240px;margin:0 auto;padding:40px 32px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-weight:700;font-size:18px">Gadget Data Recovery</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a8f96">DATA RECOVERY · MICROSOLDERING · BOARD-LEVEL REPAIR · SYDNEY</span>
+</div>
+<div style="display:flex;gap:24px;flex-wrap:wrap">
+<a href="Gadget Data Recovery.dc.html" style="font-size:14px;color:#8a8f96">Home</a>
+<a href="GDR Board Repairs.dc.html" style="font-size:14px;color:#8a8f96">Board Repairs</a>
+<a href="GDR Trade B2B.dc.html" style="font-size:14px;color:#8a8f96">Trade &amp; B2B</a>
+<a href="GDR Contact.dc.html" style="font-size:14px;color:#8a8f96">Contact</a>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+&quot;showTopBar&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot;},
+&quot;fadeHeroImage&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot;}
+}">
+class Component extends DCLogic {
+renderVals() {
+const fade = this.props.fadeHeroImage ?? true;
+return {
+showTopBar: this.props.showTopBar ?? true,
+fadeHeroImage: fade,
+frameHeroImage: !fade,
+};
+}
+}
+</script>
+</body>
+</html>

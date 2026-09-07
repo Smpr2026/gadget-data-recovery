@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Book &amp; Track Repairs | Customer Portal | Gadget Data Recovery</title>
+<meta name="description" content="Book your repair or data recovery online, track its status live, and view pricing. Gadget Data Recovery — Kingsgrove, Sydney.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html, body { margin: 0; padding: 0; background: #0c0e10; }
+body { font-family: 'Space Grotesk', sans-serif; color: #e8e6e1; -webkit-font-smoothing: antialiased; }
+a { color: #e8a33d; text-decoration: none; }
+a:hover { color: #f2bc6a; }
+* { box-sizing: border-box; }
+input, select, textarea { font-family: 'Space Grotesk', sans-serif; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#0c0e10;display:flex;flex-direction:column">
+
+<nav style="position:sticky;top:0;z-index:50;background:rgba(12,14,16,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 32px;border-bottom:1px solid #23262b;flex-wrap:wrap">
+<a href="Gadget Data Recovery.dc.html" style="display:flex;align-items:baseline;gap:10px;color:#e8e6e1">
+<span style="font-weight:700;font-size:21px;letter-spacing:-0.5px">GADGET</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e8a33d;letter-spacing:1px">DATA RECOVERY</span>
+</a>
+<div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
+<a href="Gadget Data Recovery.dc.html" style="font-size:15px;color:#b8bcc2">Home</a>
+<a href="GDR Data Recovery.dc.html" style="font-size:15px;color:#b8bcc2">Data Recovery</a>
+<a href="GDR Board Repairs.dc.html" style="font-size:15px;color:#b8bcc2">Board Repairs</a>
+<a href="GDR Trade B2B.dc.html" style="font-size:15px;color:#b8bcc2">Trade &amp; B2B</a>
+<a href="GDR Contact.dc.html" style="font-size:15px;color:#b8bcc2">Contact</a>
+<a href="GDR Portal.dc.html" style="background:#e8a33d;color:#131007;font-weight:600;font-size:15px;padding:10px 20px;border-radius:6px">Book / Track</a>
+</div>
+</nav>
+
+<!-- LOGIN -->
+<sc-if value="{{ showLogin }}" hint-placeholder-val="{{ true }}">
+<section style="flex:1;display:flex;align-items:center;justify-content:center;padding:64px 24px">
+<div style="width:100%;max-width:420px;background:#111316;border:1px solid #23262b;border-radius:14px;padding:40px">
+<p style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e8a33d;letter-spacing:2px;margin:0 0 14px;text-align:center">CUSTOMER PORTAL</p>
+<h1 style="font-size:28px;font-weight:700;letter-spacing:-0.5px;margin:0 0 8px;text-align:center">Book &amp; track your repairs</h1>
+<p style="font-size:14px;color:#8a8f96;margin:0 0 28px;text-align:center">Sign in to book jobs, follow repair status and view your quotes.</p>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8f96;letter-spacing:1px">EMAIL</label>
+<input type="email" value="{{ fEmail }}" onChange="{{ setEmail }}" placeholder="you@email.com" style="background:#0c0e10;border:1px solid #3a3e45;border-radius:8px;color:#e8e6e1;font-size:15px;padding:12px 14px;outline:none" style-focus="border-color:#e8a33d">
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8f96;letter-spacing:1px">PASSWORD</label>
+<input type="password" value="{{ fPassword }}" onChange="{{ setPassword }}" placeholder="••••••••" style="background:#0c0e10;border:1px solid #3a3e45;border-radius:8px;color:#e8e6e1;font-size:15px;padding:12px 14px;outline:none" style-focus="border-color:#e8a33d">
+</div>
+<sc-if value="{{ loginError }}" hint-placeholder-val="{{ false }}">
+<p style="font-size:13px;color:#e06c5a;margin:0">{{ loginError }}</p>
+</sc-if>
+<button onClick="{{ doLogin }}" style="background:#e8a33d;color:#131007;font-weight:600;font-size:16px;padding:13px;border:none;border-radius:8px;cursor:pointer;margin-top:4px" style-hover="background:#f2bc6a">Sign in</button>
+<button onClick="{{ doGuest }}" style="background:transparent;color:#b8bcc2;font-weight:500;font-size:14px;padding:10px;border:1px solid #3a3e45;border-radius:8px;cursor:pointer" style-hover="border-color:#e8a33d;color:#e8a33d">Continue as guest to book a job</button>
+</div>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66;margin:24px 0 0;text-align:center">DEMO PORTAL — ANY DETAILS SIGN YOU IN</p>
+</div>
+</section>
+</sc-if>
+
+<!-- DASHBOARD -->
+<sc-if value="{{ showDash }}" hint-placeholder-val="{{ false }}">
+<section style="flex:1;max-width:1240px;margin:0 auto;padding:48px 32px 80px;width:100%">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:32px">
+<div>
+<p style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e8a33d;letter-spacing:2px;margin:0 0 8px">CUSTOMER PORTAL</p>
+<h1 style="font-size:32px;font-weight:700;letter-spacing:-0.5px;margin:0">{{ welcome }}</h1>
+</div>
+<button onClick="{{ doLogout }}" style="background:transparent;color:#8a8f96;font-size:14px;padding:10px 18px;border:1px solid #3a3e45;border-radius:8px;cursor:pointer" style-hover="color:#e8e6e1;border-color:#8a8f96">Sign out</button>
+</div>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px">
+<button onClick="{{ goJobs }}" style="{{ jobsTabStyle }}">My jobs</button>
+<button onClick="{{ goBook }}" style="{{ bookTabStyle }}">New booking</button>
+<button onClick="{{ goPricing }}" style="{{ pricingTabStyle }}">Pricing</button>
+</div>
+
+<!-- MY JOBS -->
+<sc-if value="{{ showJobs }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:18px">
+<sc-for list="{{ jobs }}" as="job" hint-placeholder-count="2">
+<div style="background:#111316;border:1px solid #23262b;border-radius:12px;padding:26px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:14px">
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#e8a33d">{{ job.id }}</span>
+<span style="font-size:18px;font-weight:600">{{ job.title }}</span>
+</div>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#131007;background:#e8a33d;padding:5px 12px;border-radius:100px;font-weight:500">{{ job.status }}</span>
+</div>
+<p style="font-size:14px;color:#8a8f96;margin:0 0 18px">{{ job.meta }}</p>
+<div style="background:#23262b;border-radius:100px;height:6px;overflow:hidden;margin-bottom:10px">
+<div style="background:#e8a33d;height:6px;border-radius:100px;width:{{ job.pct }};transition:width 0.5s ease"></div>
+</div>
+<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66">BOOKED</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66">RECEIVED</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66">DIAGNOSED</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66">QUOTED</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66">IN REPAIR</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66">TESTING</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5a5f66">READY</span>
+</div>
+</div>
+</sc-for>
+<sc-if value="{{ noJobs }}" hint-placeholder-val="{{ false }}">
+<div style="background:#15181c;border:1px dashed #3a3e45;border-radius:12px;padding:48px;text-align:center">
+<p style="font-size:16px;color:#b8bcc2;margin:0 0 18px">No jobs yet — book your first repair and track it here.</p>
+<button onClick="{{ goBook }}" style="background:#e8a33d;color:#131007;font-weight:600;font-size:15px;padding:12px 24px;border:none;border-radius:8px;cursor:pointer" style-hover="background:#f2bc6a">New booking</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- NEW BOOKING -->
+<sc-if value="{{ showBook }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:640px;background:#111316;border:1px solid #23262b;border-radius:14px;padding:36px">
+<h2 style="font-size:24px;font-weight:700;margin:0 0 6px">Book a job</h2>
+<p style="font-size:14px;color:#8a8f96;margin:0 0 28px">Free assessment on every job — we quote before any work starts.</p>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8f96;letter-spacing:1px">BRAND</label>
+<select value="{{ fBrand }}" onChange="{{ setBrand }}" style="background:#0c0e10;border:1px solid #3a3e45;border-radius:8px;color:#e8e6e1;font-size:15px;padding:12px 14px;outline:none">
+<option>iPhone</option><option>Samsung</option><option>iPad</option><option>MacBook</option><option>Google Pixel</option><option>Windows laptop</option><option>Other</option>
+</select>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8f96;letter-spacing:1px">MODEL</label>
+<input value="{{ fModel }}" onChange="{{ setModel }}" placeholder="e.g. 14 Pro Max" style="background:#0c0e10;border:1px solid #3a3e45;border-radius:8px;color:#e8e6e1;font-size:15px;padding:12px 14px;outline:none" style-focus="border-color:#e8a33d">
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8f96;letter-spacing:1px">SERVICE</label>
+<select value="{{ fService }}" onChange="{{ setService }}" style="background:#0c0e10;border:1px solid #3a3e45;border-radius:8px;color:#e8e6e1;font-size:15px;padding:12px 14px;outline:none">
+<option>Data recovery</option><option>Microsoldering / board fault</option><option>CPU / NAND swap (premium — extended turnaround)</option><option>Board layer swap</option><option>Face ID repair</option><option>Rear camera repair</option><option>Laptop / MacBook logic board</option><option>Not sure — diagnose it</option>
+</select>
+</div>
+<sc-if value="{{ cpuNote }}" hint-placeholder-val="{{ false }}">
+<div style="background:#1c1710;border:1px solid #4a3a1c;border-radius:8px;padding:14px 16px">
+<p style="font-size:13px;line-height:1.55;color:#d9b06a;margin:0">CPU &amp; NAND swaps are many hours of microscope work and carry risk on badly damaged boards. We assess first, quote a firm premium price with honest odds, and only proceed with your approval. Allow extended turnaround.</p>
+</div>
+</sc-if>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8f96;letter-spacing:1px">WHAT HAPPENED?</label>
+<textarea value="{{ fFault }}" onChange="{{ setFault }}" rows="3" placeholder="e.g. Dropped in salt water, won't turn on. Need photos recovered." style="background:#0c0e10;border:1px solid #3a3e45;border-radius:8px;color:#e8e6e1;font-size:15px;padding:12px 14px;outline:none;resize:vertical" style-focus="border-color:#e8a33d"></textarea>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8a8f96;letter-spacing:1px">GETTING IT TO US</label>
+<select value="{{ fMethod }}" onChange="{{ setMethod }}" style="background:#0c0e10;border:1px solid #3a3e45;border-radius:8px;color:#e8e6e1;font-size:15px;padding:12px 14px;outline:none">
+<option>Walk in — Kingsgrove</option><option>Mail in — Australia-wide</option>
+</select>
+</div>
+<sc-if value="{{ bookError }}" hint-placeholder-val="{{ false }}">
+<p style="font-size:13px;color:#e06c5a;margin:0">{{ bookError }}</p>
+</sc-if>
+<button onClick="{{ doBook }}" style="background:#e8a33d;color:#131007;font-weight:600;font-size:16px;padding:14px;border:none;border-radius:8px;cursor:pointer;margin-top:4px" style-hover="background:#f2bc6a">Book it in</button>
+</div>
+</div>
+</sc-if>
+
+<!-- PRICING -->
+<sc-if value="{{ showPricing }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:760px">
+<div style="background:#111316;border:1px solid #23262b;border-radius:14px;overflow:hidden">
+<div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 26px;border-bottom:1px solid #23262b;background:#15181c">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a8f96;letter-spacing:1px">SERVICE</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a8f96;letter-spacing:1px">GUIDE PRICE</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 26px;border-bottom:1px solid #23262b">
+<span style="font-size:16px">Diagnosis &amp; assessment</span><span style="font-size:16px;font-weight:600;color:#e8a33d">Free</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 26px;border-bottom:1px solid #23262b">
+<span style="font-size:16px">Data recovery (no fix, no fee)</span><span style="font-size:16px;font-weight:600">From $149</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 26px;border-bottom:1px solid #23262b">
+<span style="font-size:16px">Microsoldering / board fault</span><span style="font-size:16px;font-weight:600">From $129</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 26px;border-bottom:1px solid #23262b">
+<span style="font-size:16px">Face ID / rear camera repair</span><span style="font-size:16px;font-weight:600">From $159</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 26px;border-bottom:1px solid #23262b">
+<span style="font-size:16px">Laptop / MacBook logic board</span><span style="font-size:16px;font-weight:600">From $199</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr auto;gap:16px;padding:18px 26px">
+<span style="font-size:16px">CPU / NAND swap &amp; board layer swap</span><span style="font-size:16px;font-weight:600">Quoted on assessment</span>
+</div>
+</div>
+<p style="font-size:13px;color:#8a8f96;margin:16px 4px 0;line-height:1.6">Guide prices only — every job gets a firm quote after free assessment, before any work starts. CPU and layer swaps are premium services involving many hours of microscope work; they're quoted individually with honest odds of success. 3-month warranty on parts and labour.</p>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<footer style="border-top:1px solid #23262b;background:#0f1114;margin-top:auto">
+<div style="max-width:1240px;margin:0 auto;padding:40px 32px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-weight:700;font-size:18px">Gadget Data Recovery</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a8f96">DATA RECOVERY · MICROSOLDERING · BOARD-LEVEL REPAIR · SYDNEY</span>
+</div>
+<div style="display:flex;gap:24px;flex-wrap:wrap">
+<a href="Gadget Data Recovery.dc.html" style="font-size:14px;color:#8a8f96">Home</a>
+<a href="GDR Data Recovery.dc.html" style="font-size:14px;color:#8a8f96">Data Recovery</a>
+<a href="GDR Board Repairs.dc.html" style="font-size:14px;color:#8a8f96">Board Repairs</a>
+<a href="GDR Contact.dc.html" style="font-size:14px;color:#8a8f96">Contact</a>
+</div>
+</div>
+</footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+let jobs = [];
+let user = '';
+try {
+jobs = JSON.parse(localStorage.getItem('gdr-portal-jobs') || '[]');
+user = localStorage.getItem('gdr-portal-user') || '';
+} catch (e) {}
+if (!jobs.length) {
+jobs = [{
+id: 'GDR-1042', title: 'iPhone 13 Pro — Data recovery', status: 'DIAGNOSED', step: 3,
+meta: 'Sample job · Liquid damage, no power · Booked via walk-in'
+}];
+}
+this.state = { user, view: user ? 'dash' : 'login', tab: 'jobs', jobs,
+fEmail: '', fPassword: '', loginError: '',
+fBrand: 'iPhone', fModel: '', fService: 'Data recovery', fFault: '', fMethod: 'Walk in — Kingsgrove', bookError: '' };
+}
+save(jobs, user) {
+try {
+localStorage.setItem('gdr-portal-jobs', JSON.stringify(jobs));
+if (user !== undefined) localStorage.setItem('gdr-portal-user', user);
+} catch (e) {}
+}
+tabStyle(active) {
+return active
+? { background: '#e8a33d', color: '#131007', fontWeight: 600, fontSize: '15px', padding: '11px 22px', border: '1px solid #e8a33d', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Space Grotesk', sans-serif" }
+: { background: 'transparent', color: '#b8bcc2', fontWeight: 500, fontSize: '15px', padding: '11px 22px', border: '1px solid #3a3e45', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Space Grotesk', sans-serif" };
+}
+renderVals() {
+const s = this.state;
+const totalSteps = 7;
+const jobs = s.jobs.map(j => ({ ...j, pct: Math.round((j.step / totalSteps) * 100) + '%' }));
+const name = s.user && s.user !== 'guest' ? s.user.split('@')[0] : 'there';
+return {
+showLogin: s.view === 'login',
+showDash: s.view === 'dash',
+showJobs: s.tab === 'jobs',
+showBook: s.tab === 'book',
+showPricing: s.tab === 'pricing',
+noJobs: s.jobs.length === 0,
+jobs,
+welcome: 'Welcome back, ' + name,
+cpuNote: s.fService.indexOf('CPU') === 0,
+fEmail: s.fEmail, fPassword: s.fPassword, loginError: s.loginError,
+fBrand: s.fBrand, fModel: s.fModel, fService: s.fService, fFault: s.fFault, fMethod: s.fMethod, bookError: s.bookError,
+jobsTabStyle: this.tabStyle(s.tab === 'jobs'),
+bookTabStyle: this.tabStyle(s.tab === 'book'),
+pricingTabStyle: this.tabStyle(s.tab === 'pricing'),
+setEmail: e => this.setState({ fEmail: e.target.value }),
+setPassword: e => this.setState({ fPassword: e.target.value }),
+setBrand: e => this.setState({ fBrand: e.target.value }),
+setModel: e => this.setState({ fModel: e.target.value }),
+setService: e => this.setState({ fService: e.target.value }),
+setFault: e => this.setState({ fFault: e.target.value }),
+setMethod: e => this.setState({ fMethod: e.target.value }),
+doLogin: () => {
+if (!s.fEmail.trim()) { this.setState({ loginError: 'Enter your email to sign in.' }); return; }
+this.save(s.jobs, s.fEmail.trim());
+this.setState({ user: s.fEmail.trim(), view: 'dash', tab: 'jobs', loginError: '' });
+},
+doGuest: () => {
+this.save(s.jobs, 'guest');
+this.setState({ user: 'guest', view: 'dash', tab: 'book' });
+},
+doLogout: () => {
+this.save(s.jobs, '');
+this.setState({ user: '', view: 'login' });
+},
+goJobs: () => this.setState({ tab: 'jobs' }),
+goBook: () => this.setState({ tab: 'book' }),
+goPricing: () => this.setState({ tab: 'pricing' }),
+doBook: () => {
+if (!s.fModel.trim() || !s.fFault.trim()) { this.setState({ bookError: 'Add the model and a short fault description.' }); return; }
+const id = 'GDR-' + (1043 + s.jobs.length + Math.floor(Math.random() * 40));
+const job = {
+id, title: s.fBrand + ' ' + s.fModel.trim() + ' — ' + s.fService.replace(/ \(.*\)/, ''),
+status: 'BOOKED', step: 1,
+meta: s.fFault.trim() + ' · ' + s.fMethod
+};
+const jobs = [job, ...s.jobs];
+this.save(jobs);
+this.setState({ jobs, tab: 'jobs', fModel: '', fFault: '', bookError: '' });
+},
+};
+}
+}
+</script>
+</body>
+</html>
