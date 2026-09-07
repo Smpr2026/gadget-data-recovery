@@ -99,11 +99,13 @@
     .fromTo('#ph3', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' }, 0.93)
     .to('.story-board', { opacity: 0, duration: 0.04 }, 0.9)
     .fromTo('#storyPhoto', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.06, ease: 'power2.out' }, 0.92);
+  if (GDR.flag('nostory')) story.scrollTrigger.disable();
 
   /* ---------- 21st.dev "Beams Background" (jahed), ported, recoloured to the bench ---------- */
   (function beams(){
     var canvas = document.getElementById('beams'), host = document.getElementById('stage');
-    if (!canvas || !host) return; var ctx = canvas.getContext('2d'); if (!ctx) return;
+    if (!canvas || !host || GDR.lite || GDR.flag('nobeams')) return; var ctx = canvas.getContext('2d'); if (!ctx) return;
+    window.addEventListener('gdr:lite', function(){ visible = false; ctx.clearRect(0,0,width,height); });
     var density = 14, speed = 0.55, aberration = 3, opacity = 42, width = 0, height = 0, time = 0, visible = true;
     function noise(x, t){ return (Math.sin(x*0.01 + t) + Math.sin(x*0.03 + t*2)*0.5 + Math.sin(x*0.1 + t*4)*0.25) / 1.75; }
     function resize(){ width = Math.max(1, Math.floor(host.offsetWidth/4)); height = Math.max(1, Math.floor(host.offsetHeight/4)); canvas.width = width; canvas.height = height; }

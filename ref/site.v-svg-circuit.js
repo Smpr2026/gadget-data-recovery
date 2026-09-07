@@ -12,9 +12,7 @@
   function el(n, a){ var e = document.createElementNS(svgNS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
   var seed = 11; function rnd(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
   var intros = [];
-  var LITE = /[?&]lite\b/.test(location.search) || (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
-  var FLAGS = (location.search.match(/[?&]dbg=([^&]+)/) || [])[1] || '';
-  var GDR = window.GDR = { flag: function(n){ return FLAGS.indexOf(n) >= 0; }, lite: LITE, motion: !RM && !!G && !!ST, gsap: G, ST: ST, lenis: null, EXPO: 'expo.out', el: el, rnd: rnd, onIntro: function(fn){ intros.push(fn); }, velocity: function(){ return velocity; } };
+  var GDR = window.GDR = { motion: !RM && !!G && !!ST, gsap: G, ST: ST, lenis: null, EXPO: 'expo.out', el: el, rnd: rnd, onIntro: function(fn){ intros.push(fn); }, velocity: function(){ return velocity; } };
   var velocity = 0;
 
   /* ---------- procedural geometry shared by pages ---------- */
@@ -25,17 +23,15 @@
     if (track && !RM) { track.innerHTML += track.innerHTML; }
   })();
 
-  /* ---------- circuit background (canvas): traces rasterised once into an offscreen bitmap; only the current pulses redraw, at 30fps ---------- */
-  var circuit = { ctx: null, pulses: [], acc: 0, charge: 0 };
+  /* ---------- circuit background: traces from both edges; current pulses driven by time + scroll velocity ---------- */
+  var circuit = { svg: document.getElementById('circuit'), pulses: [], H: 0 };
   function buildCircuit(){
-    var old = document.getElementById('circuit'); if (!old) return; if (GDR.flag('nocircuit')) { old.remove(); return; }
-    var cv = old;
-    if (old.tagName.toLowerCase() !== 'canvas') { cv = document.createElement('canvas'); cv.className = 'circuit'; cv.id = 'circuit'; cv.setAttribute('aria-hidden', 'true'); old.parentNode.replaceChild(cv, old); }
-    var W = window.innerWidth, vh = Math.max(window.innerHeight, 600), H = Math.round(vh * 1.6);
-    if (!(W > 0)) { circuit = { ctx: null, pulses: [] }; return; } // hidden/zero-size viewport: build on the next resize instead
-    var dpr = 1;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(vh * dpr); cv.style.width = W + 'px'; cv.style.height = vh + 'px';
-    var perSide = Math.max(8, Math.round(H / (W < 900 ? 70 : 46))); var paths = [], pads = [], sqs = [];
+    var svg = circuit.svg; if (!svg) return;
+    var W = window.innerWidth, H = Math.max(window.innerHeight, 600) * 1.6; circuit.H = H;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.style.height = H + 'px';
+    var gT = document.getElementById('circuitTraces'), gP = document.getElementById('circuitPulses');
+    gT.innerHTML = ''; gP.innerHTML = ''; circuit.pulses = [];
+    var perSide = Math.max(8, Math.round(H / (window.innerWidth < 900 ? 70 : 46))); var paths = [];
     [-1, 1].forEach(function(side){
       var inner = W * 0.46;
       for (var i = 0; i < perSide; i++) {
@@ -52,86 +48,29 @@
         }
         for (var b = 0; b < bundle; b++) {
           var off = (b - (bundle-1)/2) * 13;
-          var pts = [[side < 0 ? -12 : W + 12, y0 + off]];
-          plan.forEach(function(pt){ pts.push([pt[0], pt[1] + off]); });
-          var last = pts[pts.length-1];
-          paths.push(pts);
-          if (rnd() < 0.72) pads.push(last); else sqs.push(last);
+          var d = 'M' + (side < 0 ? -12 : W + 12) + ',' + (y0 + off);
+          plan.forEach(function(pt){ d += ' L' + pt[0].toFixed(1) + ',' + (pt[1] + off).toFixed(1); });
+          var last = plan[plan.length-1];
+          gT.appendChild(el('path', { d: d, 'class': 'trace' }));
+          if (rnd() < 0.72) gT.appendChild(el('circle', { cx: last[0], cy: last[1] + off, r: 4, 'class': 'pad' }));
+          else gT.appendChild(el('rect', { x: last[0] - 5, y: last[1] + off - 5, width: 10, height: 10, 'class': 'sq' }));
+          paths.push(d);
         }
       }
     });
-    function layer(color){
-      var c = document.createElement('canvas'); c.width = Math.round(W*dpr); c.height = Math.round(H*dpr);
-      var x = c.getContext('2d'); x.scale(dpr, dpr); x.lineWidth = 1.5; x.lineJoin = 'round'; x.lineCap = 'round'; x.strokeStyle = color; x.beginPath();
-      paths.forEach(function(p){ x.moveTo(p[0][0], p[0][1]); for (var i = 1; i < p.length; i++) x.lineTo(p[i][0], p[i][1]); });
-      x.stroke(); return { c: c, x: x };
+    if (RM) return;
+    var count = Math.min(window.innerWidth < 900 ? 8 : 18, Math.floor(paths.length * 0.32));
+    for (var c = 0; c < count; c++) {
+      var d2 = paths[Math.floor(rnd() * paths.length)];
+      var halo = el('path', { d: d2, 'class': 'halo' }), pp = el('path', { d: d2, 'class': 'pulse' });
+      gP.appendChild(halo); gP.appendChild(pp);
+      var len = pp.getTotalLength(), dash = 70 + rnd()*90;
+      halo.style.strokeDasharray = pp.style.strokeDasharray = dash + ' ' + (len + dash);
+      circuit.pulses.push({ a: pp, b: halo, len: len, dash: dash, pos: -rnd()*len, speed: 160 + rnd()*260, wait: rnd()*3 });
     }
-    var st = layer('#2a3037');
-    st.x.fillStyle = '#0c0e10'; st.x.strokeStyle = '#343a42';
-    pads.forEach(function(p){ st.x.beginPath(); st.x.arc(p[0], p[1], 4, 0, Math.PI*2); st.x.fill(); st.x.stroke(); });
-    st.x.fillStyle = '#2f353d'; sqs.forEach(function(p){ st.x.fillRect(p[0]-5, p[1]-5, 10, 10); });
-    var am = layer('#e8a33d');
-    circuit = { cv: cv, ctx: cv.getContext('2d'), stat: st.c, amber: am.c, pulses: [], W: W, H: H, vh: vh, dpr: dpr, acc: 0, charge: 0 };
-    if (!RM) {
-      var count = Math.min(W < 900 ? 8 : 18, Math.floor(paths.length * 0.32));
-      for (var c2 = 0; c2 < count; c2++) {
-        var pts2 = paths[Math.floor(rnd() * paths.length)]; var cum = [0];
-        for (var k = 1; k < pts2.length; k++) cum.push(cum[k-1] + Math.hypot(pts2[k][0]-pts2[k-1][0], pts2[k][1]-pts2[k-1][1]));
-        var len = cum[cum.length-1];
-        circuit.pulses.push({ pts: pts2, cum: cum, len: len, dash: 70 + rnd()*90, pos: -rnd()*len, speed: 160 + rnd()*260, wait: rnd()*3 });
-      }
-    }
-    var m0 = root.scrollHeight - innerHeight; drawCircuit(0, 0, m0 > 0 ? window.scrollY / m0 : 0);
   }
-  function ptAt(pts, cum, d){
-    var n = pts.length; if (d <= 0) return pts[0]; if (d >= cum[n-1]) return pts[n-1];
-    var i = 1; while (cum[i] < d) i++;
-    var t = (d - cum[i-1]) / ((cum[i] - cum[i-1]) || 1);
-    return [pts[i-1][0] + (pts[i][0]-pts[i-1][0])*t, pts[i-1][1] + (pts[i][1]-pts[i-1][1])*t];
-  }
-  function strokeSeg(ctx, p, a, b){
-    a = Math.max(0, a); b = Math.min(p.len, b); if (b <= a) return;
-    var s = ptAt(p.pts, p.cum, a), e = ptAt(p.pts, p.cum, b);
-    ctx.beginPath(); ctx.moveTo(s[0], s[1]);
-    for (var i = 0; i < p.pts.length; i++) { if (p.cum[i] > a && p.cum[i] < b) ctx.lineTo(p.pts[i][0], p.pts[i][1]); }
-    ctx.lineTo(e[0], e[1]); ctx.stroke();
-  }
-  function drawCircuit(sdt, vel, pr){
-    var c = circuit; if (!c.ctx || !c.stat || !c.stat.width) return;
-    var live = false; c.pulses.forEach(function(p){ if (p.wait > 0) { p.wait -= sdt; if (p.wait <= 0) live = true; } else live = true; });
-    if (!live && Math.abs(pr - (c.lastPr || 0)) < 0.0005 && c.charge < 0.02 && Math.abs(vel) < 0.5 && c.drawn) return;
-    c.lastPr = pr; c.drawn = true;
-    var ctx = c.ctx, off = -(c.H - c.vh) * pr;
-    ctx.setTransform(c.dpr, 0, 0, c.dpr, 0, 0); ctx.clearRect(0, 0, c.W, c.vh);
-    ctx.drawImage(c.stat, 0, off, c.W, c.H);
-    var charge = Math.min(1, Math.abs(vel) / 28); c.charge += (charge - c.charge) * 0.2;
-    if (c.charge > 0.02) { ctx.globalAlpha = c.charge * 0.8; ctx.drawImage(c.amber, 0, off, c.W, c.H); ctx.globalAlpha = 1; }
-    if (!c.pulses.length) return;
-    var boost = 1 + Math.min(6, Math.abs(vel) / 6);
-    ctx.save(); ctx.translate(0, off); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    c.pulses.forEach(function(p){
-      if (p.wait > 0) return;
-      p.pos += p.speed * boost * sdt;
-      if (p.pos - p.dash > p.len) { p.pos = 0; p.wait = 0.8 + rnd()*3.5; return; }
-      ctx.strokeStyle = 'rgba(232,163,61,0.22)'; ctx.lineWidth = 9; strokeSeg(ctx, p, p.pos - p.dash, p.pos);
-      ctx.strokeStyle = '#e8a33d'; ctx.lineWidth = 2; strokeSeg(ctx, p, p.pos - p.dash, p.pos);
-    });
-    ctx.restore();
-  }
-  GDR.goLite = function(){
-    if (GDR.lite) return; GDR.lite = true; root.classList.add('lite');
-    circuit.pulses = []; circuit.drawn = false;
-    document.querySelectorAll('.scene.live').forEach(function(sc){ sc.classList.remove('live'); });
-    if (lenis) { lenis.destroy(); lenis = null; GDR.lenis = null; root.classList.remove('lenis'); }
-    window.dispatchEvent(new CustomEvent('gdr:lite'));
-  };
-  function probeFrames(){
-    var n = 0, slow = 0, last = performance.now();
-    function f(t){ var d = t - last; last = t; if (n++ > 5 && d > 34) slow++; if (n < 120) requestAnimationFrame(f); else if (slow > 24 || document.hidden === false && slow > 24) GDR.goLite(); }
-    requestAnimationFrame(f);
-  }
-  try { buildCircuit(); } catch (err) { circuit = { ctx: null, pulses: [] }; } // never let the background take the kit down
-  var resizeT = 0; window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT = setTimeout(function(){ try { buildCircuit(); } catch (err) {} if (ST) ST.refresh(); }, 250); });
+  buildCircuit();
+  var resizeT = 0; window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT = setTimeout(function(){ buildCircuit(); if (ST) ST.refresh(); }, 250); });
 
   /* ---------- nav compaction + mobile menu ---------- */
   var nav = document.getElementById('nav');
@@ -165,14 +104,28 @@
     lenis.on('scroll', ST.update);
     G.ticker.add(function(time){ lenis.raf(time * 1000); });
     G.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click', function(e){ var t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); if (lenis) lenis.scrollTo(t, { offset: -70 }); else t.scrollIntoView({ behavior: 'smooth' }); } }); });
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click', function(e){ var t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -70 }); } }); });
   }
-  var bar = document.querySelector('.progress');
+  var bar = document.querySelector('.progress'), lastCharge = 0;
   G.ticker.add(function(time, dt){
     var y = window.scrollY; var v = lenis ? lenis.velocity : (y - lastY) / Math.max(dt, 1) * 16; lastY = y;
     velocity += (v - velocity) * 0.15;
     var m = root.scrollHeight - innerHeight; if (bar) bar.style.transform = 'scaleX(' + (m > 0 ? y / m : 0) + ')';
-    if (circuit.ctx) { circuit.acc += dt; if (circuit.acc >= 30) { var sdt = Math.min(circuit.acc, 120) / 1000; circuit.acc = 0; drawCircuit(sdt, velocity, m > 0 ? y / m : 0); } }
+    if (circuit.svg) {
+      var pr = m > 0 ? y / m : 0;
+      circuit.svg.style.transform = 'translate3d(0,' + (-(circuit.H - innerHeight) * pr).toFixed(1) + 'px,0)';
+      var charge = Math.min(1, Math.abs(velocity) / 28);
+      if (Math.abs(charge - lastCharge) > 0.04 || (charge === 0 && lastCharge !== 0)) { lastCharge = charge; circuit.svg.style.setProperty('--charge', charge.toFixed(2)); }
+      var boost = 1 + Math.min(6, Math.abs(velocity) / 6);
+      var sdt = dt / 1000;
+      circuit.pulses.forEach(function(p){
+        if (p.wait > 0) { p.wait -= sdt; return; }
+        p.pos += p.speed * boost * sdt;
+        var off = p.len + p.dash - p.pos;
+        if (off < -p.dash) { p.pos = 0; p.wait = 0.8 + rnd()*3.5; off = p.len + p.dash; }
+        p.a.style.strokeDashoffset = p.b.style.strokeDashoffset = off.toFixed(1);
+      });
+    }
     if (marqueeTween) { marqueeTween.timeScale(1 + Math.min(4, Math.abs(velocity) / 10)); skewTo(Math.max(-12, Math.min(12, -velocity * 0.3))); }
   });
 
@@ -229,8 +182,7 @@
   /* ---------- boot sequence, then every registered intro ---------- */
   var boot = document.getElementById('boot');
   var booted = false;
-  function runIntros(){
-    if (!GDR.lite && !GDR.flag('noprobe')) setTimeout(probeFrames, 3000); if (introEls.length) genericIntro(); intros.forEach(function(fn){ try { fn(); } catch (e) { console.warn(e); } }); ST.refresh(); }
+  function runIntros(){ if (introEls.length) genericIntro(); intros.forEach(function(fn){ try { fn(); } catch (e) { console.warn(e); } }); ST.refresh(); }
   function runBoot(){
     if (booted) return; booted = true;
     if (!boot) { runIntros(); return; }
@@ -258,8 +210,7 @@
   document.querySelectorAll('.scene').forEach(function(sc){
     sc.classList.add('pre');
     ST.create({ trigger: sc, start: 'top 68%', once: true, onEnter: function(){ sc.classList.remove('pre'); sc.classList.add('in'); } });
-    if (!GDR.lite) ST.create({ trigger: sc, start: 'top bottom', end: 'bottom top', onToggle: function(t){ sc.classList.toggle('live', t.isActive && !GDR.lite); } });
-    if (!GDR.flag('nopar')) G.fromTo(sc, { yPercent: 6, scale: 0.96 }, { yPercent: -6, scale: 1, ease: 'none', scrollTrigger: { trigger: sc, start: 'top bottom', end: 'bottom top', scrub: true } });
+    G.fromTo(sc, { yPercent: 6, scale: 0.96 }, { yPercent: -6, scale: 1, ease: 'none', scrollTrigger: { trigger: sc, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
 
   /* ---------- copy reveals ---------- */
@@ -275,7 +226,7 @@
 
   /* ---------- bench band: photo parallax ---------- */
   document.querySelectorAll('.band').forEach(function(band){
-    var img = band.querySelector('.band-img'); if (!img || GDR.flag('nopar')) return;
+    var img = band.querySelector('.band-img'); if (!img) return;
     var tl = G.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: band, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
     tl.fromTo(img, { yPercent: -7, scale: 1.12, transformOrigin: '50% 50%' }, { yPercent: 7, scale: 1.02 }, 0);
     var copy = band.querySelector('.copy'); if (copy) tl.fromTo(copy, { y: 40 }, { y: -40 }, 0);

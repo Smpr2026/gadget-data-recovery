@@ -125,3 +125,11 @@ Rebuild the demo portal from `ref/design/GDR Portal.dc.html` in vanilla JS: logi
 - Under `--virtual-time-budget` the GSAP/Lenis frame loop barely ticks, so a live (non-`?static`) capture can show the hero at opacity 0. Use `?static` for layout; confirm motion in a real browser tab that is visible (a hidden tab freezes the ticker too).
 - Headless Chrome often never exits after writing the screenshot on these pages. Wrap each capture in a timeout (`perl -e 'alarm 25; exec @ARGV' -- "…Chrome" …`) and scope any `pkill` to your own `--user-data-dir`.
 - The nav button contrast (`.links .btn` inheriting the link colour) is fixed in `assets/site.css`; pages no longer need a shim, but one is harmless.
+
+## Performance rules (added 2026-09-08 after the lag report)
+
+- The background circuit is a canvas built by `assets/site.js` from the `<svg id="circuit">` placeholder; leave the placeholder as it is.
+- No `backdrop-filter`, no `mix-blend-mode`, no SVG `filter` on anything that moves or sits under moving content. No `will-change` on more than a handful of elements.
+- Anything that animates forever must be gated to the viewport: use `.scene.live` (toggled by the kit while a scene is on screen) or a ScrollTrigger `onToggle`.
+- Respect `GDR.lite` (weak hardware, `?lite`, or the runtime frame probe) and the `gdr:lite` event: stop your own canvases and ambient tweens when it fires.
+- Measure before and after with `ref/perf/cdp-probe.mjs` (see the comment at the top of the file); the numbers that matter are scroll mean/p95 frame time, slow-frame count and renderer RSS at 1920×1083 @2x, cold profile.

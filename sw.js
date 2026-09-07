@@ -1,5 +1,5 @@
 /* Gadget Data Recovery — caches the site kit and photos so repeat visits are instant. Pages: network first. */
-var CACHE = 'gdr-v1';
+var CACHE = 'gdr-v2';
 var ASSETS = ['assets/site.css','assets/site.js','assets/home.js','assets/cpu-tweezers-cut.png','assets/board-cut.png','assets/scope-gold-ic.jpg','assets/chip-reball.jpg','assets/scope-boards.jpg','assets/board-labeled.jpg','assets/cpu-tweezers.jpg'];
 self.addEventListener('install', function(e){ e.waitUntil(caches.open(CACHE).then(function(c){ return c.addAll(ASSETS).catch(function(){}); }).then(function(){ return self.skipWaiting(); })); });
 self.addEventListener('activate', function(e){ e.waitUntil(caches.keys().then(function(keys){ return Promise.all(keys.filter(function(k){ return k !== CACHE; }).map(function(k){ return caches.delete(k); })); }).then(function(){ return self.clients.claim(); })); });

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="../../assets/site.css">
 <style>
 /* ---------- story (pinned scroll sequence) ---------- */
 .story{position:relative;height:560vh}
@@ -31,7 +31,7 @@
 .hint i{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--amber));display:block;transform-origin:100% 50%}
 #beams{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.8;-webkit-mask-image:linear-gradient(to top,transparent 0%,#000 40%);mask-image:linear-gradient(to top,transparent 0%,#000 40%);pointer-events:none}
 .story .lamp{position:absolute;right:-10%;top:-30%;width:70%;height:120%;background:radial-gradient(closest-side,rgba(232,163,61,.16),transparent 70%);z-index:1;pointer-events:none}
-.story .scan{position:absolute;inset:0;z-index:2;pointer-events:none;background-image:linear-gradient(rgba(0,0,0,0) 50%,rgba(0,0,0,.35) 50%);background-size:100% 4px;opacity:.12}
+.story .scan{position:absolute;inset:0;z-index:2;pointer-events:none;background-image:linear-gradient(rgba(0,0,0,0) 50%,rgba(0,0,0,.35) 50%);background-size:100% 4px;opacity:.16;mix-blend-mode:multiply}
 #fpTraces path{stroke:var(--amber);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
 .callout .lead{stroke:var(--amber);stroke-width:2;fill:none;stroke-dasharray:1;stroke-dashoffset:1}
 .callout .label{opacity:0}
@@ -72,7 +72,7 @@ html:not(.js) .hint,.rm .hint{display:none}
 </style>
 </head>
 <body>
-<svg class="circuit" id="circuit" aria-hidden="true"><g id="circuitTraces"></g><g id="circuitPulses"></g></svg>
+
 <div class="progress" aria-hidden="true"></div>
 <div id="boot" aria-hidden="true"><div class="t">GADGET DATA RECOVERY</div><div class="bar"><i></i></div></div>
 <div class="cur" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
@@ -223,7 +223,7 @@ html:not(.js) .hint,.rm .hint{display:none}
         </g>
       </svg>
     </div>
-    <img class="story-photo" id="storyPhoto" src="assets/cpu-tweezers-cut.png" alt="iPhone CPU lifted off the logic board with tweezers, on our bench">
+    <img class="story-photo" id="storyPhoto" src="../../assets/cpu-tweezers-cut.png" alt="iPhone CPU lifted off the logic board with tweezers, on our bench">
     <div class="grain" aria-hidden="true"></div>
     <div class="hud" aria-hidden="true"><span>Step<b id="hudStage">01 · Smashed</b></span><span>Grip<b id="hudGrip">Open</b></span><span>Lift<b id="hudLift">0.0 mm</b></span><span>Reflow<b id="hudTemp">25 °C</b></span></div>
     <div class="hint" aria-hidden="true"><i></i>Scroll</div>
@@ -261,7 +261,7 @@ html:not(.js) .hint,.rm .hint{display:none}
         <svg viewBox="0 0 486 250" role="img" aria-label="Phone logic board from the bench with the UFS storage, CPU, RAM and EEPROM chips marked">
           <defs><filter id="chipGlowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter></defs>
           <defs><radialGradient id="mBoard" cx=".5" cy=".5" r=".62"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient><mask id="maskBoard"><rect width="486" height="250" fill="url(#mBoard)"/></mask><radialGradient id="vigBoard" cx=".5" cy=".5" r=".6"><stop offset=".5" stop-color="#0c0e10" stop-opacity="0"/><stop offset="1" stop-color="#0c0e10" stop-opacity="1"/></radialGradient></defs>
-          <image href="assets/board-cut.png" width="486" height="250" preserveAspectRatio="xMidYMid slice" mask="url(#maskBoard)"/>
+          <image href="../../assets/board-cut.png" width="486" height="250" preserveAspectRatio="xMidYMid slice" mask="url(#maskBoard)"/>
           <rect width="486" height="250" fill="url(#vigBoard)"/>
           <ellipse class="chip-glow" style="--i:0" cx="140" cy="132" rx="54" ry="46" fill="#e8a33d" fill-opacity=".34" filter="url(#chipGlowF)"/>
           <circle class="pulse" style="--i:0" cx="140" cy="132" r="4" fill="#e8a33d"/>
@@ -286,7 +286,7 @@ html:not(.js) .hint,.rm .hint{display:none}
       <figure class="scene" id="sceneScope">
         <svg viewBox="0 0 335 340" role="img" aria-label="Gold IC die and bond wires under the lab microscope">
           <defs><radialGradient id="mScope" cx=".5" cy=".5" r=".5"><stop offset=".78" stop-color="#fff"/><stop offset=".97" stop-color="#000"/></radialGradient><mask id="maskScope"><rect width="335" height="340" fill="url(#mScope)"/></mask><radialGradient id="vigScope" cx=".5" cy=".5" r=".5"><stop offset=".72" stop-color="#0c0e10" stop-opacity="0"/><stop offset=".9" stop-color="#0c0e10" stop-opacity=".85"/><stop offset="1" stop-color="#0c0e10" stop-opacity="1"/></radialGradient></defs>
-          <image href="assets/scope-gold-ic.jpg" width="335" height="340" preserveAspectRatio="xMidYMid slice" mask="url(#maskScope)"/>
+          <image href="../../assets/scope-gold-ic.jpg" width="335" height="340" preserveAspectRatio="xMidYMid slice" mask="url(#maskScope)"/>
           <rect width="335" height="340" fill="url(#vigScope)"/>
           <g stroke="#9fd8e6" fill="none" opacity=".55" stroke-width="1">
             <circle cx="167" cy="170" r="122"/><circle cx="167" cy="170" r="72"/>
@@ -321,7 +321,7 @@ html:not(.js) .hint,.rm .hint{display:none}
         <svg viewBox="0 0 399 400" role="img" aria-label="Reballed chip held in tweezers at the bench">
           <defs><filter id="reballGlowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="12"/></filter></defs>
           <defs><radialGradient id="mReball" cx=".5" cy=".52" r=".5"><stop offset=".3" stop-color="#fff"/><stop offset=".86" stop-color="#000"/></radialGradient><radialGradient id="vigReball" cx=".5" cy=".52" r=".5"><stop offset=".32" stop-color="#0c0e10" stop-opacity="0"/><stop offset=".78" stop-color="#0c0e10" stop-opacity=".75"/><stop offset="1" stop-color="#0c0e10" stop-opacity="1"/></radialGradient><mask id="maskReball"><rect width="399" height="400" fill="url(#mReball)"/></mask></defs>
-          <image href="assets/chip-reball.jpg" width="399" height="400" preserveAspectRatio="xMidYMid slice" mask="url(#maskReball)"/>
+          <image href="../../assets/chip-reball.jpg" width="399" height="400" preserveAspectRatio="xMidYMid slice" mask="url(#maskReball)"/>
           <rect width="399" height="400" fill="url(#vigReball)"/>
           <ellipse class="chip-glow" style="--i:0" cx="205" cy="225" rx="90" ry="80" fill="#e8a33d" fill-opacity=".16" filter="url(#reballGlowF)"/>
           <path class="lead" style="--i:0" pathLength="1" d="M205,225 L300,300 L330,300"/>
@@ -335,7 +335,7 @@ html:not(.js) .hint,.rm .hint{display:none}
 
 <!-- ================= BENCH BAND ================= -->
 <section class="band" id="band" aria-label="From the bench">
-  <img class="band-img" id="bandImg" src="assets/scope-boards.jpg" alt="Split board layers of an iPhone sandwich board under the microscope">
+  <img class="band-img" id="bandImg" src="../../assets/scope-boards.jpg" alt="Split board layers of an iPhone sandwich board under the microscope">
   <div class="veil" aria-hidden="true"></div>
   <div class="copy">
     <p class="k">From the bench</p>
@@ -378,7 +378,7 @@ html:not(.js) .hint,.rm .hint{display:none}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
-<script src="assets/site.js"></script>
-<script src="assets/home.js"></script>
+<script src="../../assets/site.js"></script>
+<script src="../../assets/home.js"></script>
 </body>
 </html>
